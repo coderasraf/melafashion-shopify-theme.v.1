@@ -1,10 +1,10 @@
-# Vintage.3.0 Custom Shopify Theme Development
+# Melafashion Custom Shopify Theme Development
 
-[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain)
+[![Build status](https://github.com/shopify/Melafashion/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/melafashion/actions/workflows/ci.yml?query=branch%3Amain)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)
 
 [Getting started](#getting-started) |
-[Staying up to date with Dawn changes](#staying-up-to-date-with-dawn-changes) |
+[Staying up to date with Melafashion changes](#staying-up-to-date-with-dawn-changes) |
 [Developer tools](#developer-tools) |
 [Contributing](#contributing) |
 [Code of conduct](#code-of-conduct) |
@@ -19,7 +19,7 @@ Dawn represents a HTML-first, JavaScript-only-as-needed approach to theme develo
 * **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don’t belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
 * **Functional, not pixel-perfect:** The Web doesn’t require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
 
-You can find a more detailed version of our theme code principles in the [contribution guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md#theme-code-principles).
+You can find a more detailed version of our theme code principles in the [contribution guide](https://github.com/Shopify/melafashion/blob/main/.github/CONTRIBUTING.md#theme-code-principles).
 
 ## Getting started
 
