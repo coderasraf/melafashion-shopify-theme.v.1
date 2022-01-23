@@ -1,0 +1,47 @@
+
+
+<section class="featured-collection">
+    <div class="container">
+        <div class="featured-collection-inner">
+            {% for product in collections[section.settings.collection].products limit: 6 %}
+                <div class="card mela-custom-card">
+                    <a href="{{ product.url }}">
+                        <img src="{{ product.images[0] | img_url:'large' }}" alt="{{ product.title }}">
+                    </a>
+                    <h3>
+                        <a href="{{ product.url }}">{{ product.title }}</a>
+                    </h3>
+                    <p>{{ product.price | money }}</p>
+                </div>
+            {% endfor %} 
+        </div>
+    </div>
+</section>
+
+
+
+{% schema %}
+{
+    "name": "Featured Collection",
+    "class": "featured-collection-mela",
+    "settings":[
+        {
+            "type": "collection",
+            "id":"collection",
+            "label":"Featured Collection"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Collection Title",
+            "label": "Collection Title"
+        }
+    ],
+    "presets":[
+        {
+            "name": "Featured Collection",
+            "category":"Collections"
+        }
+    ]
+}
+{% endschema %}
