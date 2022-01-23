@@ -1,0 +1,72 @@
+<section class="hero-banner-area">
+    {% if section.settings.banner_image %}
+        <img src="{{ section.settings.banner_image | img_url: 'large' }}" alt="{{ section.settings.banner_image.alt }}">
+    {% else %}
+    {% capture current %}{% cycle 1,2 %}{% endcapture %}
+    {{ 'lifestyle-' | append: current | placeholder_svg_tag }}
+    {% endif %}
+   <div class="container py">
+    <div class="row">
+        <div class="col-md-8 col-lg-6">
+         <h1>
+             {% if section.settings.section_title %}
+                 {{ section.settings.section_title }}
+             {% endif %}
+         </h1>
+         <p>
+             {% if section.settings.subtitle %}
+                 {{ section.settings.subtitle }}
+             {% endif %}
+         </p>
+         {% if section.settings.button_url %}
+             <a class="btn btn-primary" href="{{ section.settings.button_url }}">
+                 {{ section.settings.button_text }}
+             </a>
+         {% endif %}
+        </div>
+    </div>
+   </div>
+</section>
+
+{% schema %}
+{
+    "name": "Hero Banner",
+    "class":"hero-section",
+    "settings":[
+        {
+            "type": "image_picker",
+            "id":"banner_image",
+            "label":"Insert Banner Image"
+        },
+        {
+            "type":"text",
+            "id": "section_title",
+            "default": "Banner Title",
+            "label": "Enter your banner title"
+        },
+        {
+            "type":"richtext",
+            "id":"subtitle",
+            "label":"Enter your description"
+        },
+        {
+           "type": "text",
+           "id": "button_text",
+           "label": "Button text",
+           "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button Url"
+         }    
+    ],
+    
+    "presets":[
+        {
+            "name": "Hero Banner",
+            "category": "Banner"
+        }
+    ]
+}
+{% endschema %}

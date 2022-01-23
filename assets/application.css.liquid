@@ -1,2 +1,41 @@
-// Put your styles in this file.
-// Note: "@import" rules aren’t supported.
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header top css */
+.header-top-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.top-right-area-menu {
+    display: flex;
+    list-style: none;
+}
+
+.hero-banner-area {
+    padding: 40px 0;
+    position: relative;
+    z-index: 1;
+    padding: 100px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.hero-banner-area img, .hero-banner-area svg {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    content: "";
+    z-index: -1;
+
+}
+
+.hero-banner-area img{
+    object-fit: cover;
+}

@@ -1,0 +1,27 @@
+*,::before,::after{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+p{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+}
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+input,button,textarea{
+    outline: none;
+    padding: 3px 5px;
+}
+input[type=submit],button{
+    background-color: #f9f9f9;
+}

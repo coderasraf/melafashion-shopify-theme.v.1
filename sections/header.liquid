@@ -1,0 +1,103 @@
+<header>
+    <div class="announcement-bar bg-warning py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <p>This is simple announcemnt</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header top area -->
+    <div class="header-top-area py-2">
+        <div class="container">
+            <div class="header-top-inner">
+
+
+                <div class="logo-aera">
+                    <a href="#">
+                        <img src="{{ 'logo.png' | asset_img_url: 'medium' }}" alt="">
+                    </a>
+                </div>
+
+                <div class="search-bar-area">
+                    <form action="">
+                        <div class="form-group">
+                            <input type="search" placeholder="Search Products and brands">
+                            <button class="btn btn-default search-button ml-button" type="submit">
+                                {% render 'search-icon' %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="top-right-menu">
+                    <ul class="top-right-area-menu">
+                        <li>
+                            <a href="#">
+                                <span>{% render 'store-finder.liquid' %}</span> Store Finder
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                               <span>{% render 'my-account-icon.liquid' %}</span> My Account
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End of header top -->
+
+    <!-- Start of navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                {% for link in linklists.main-menu.links %}
+                    {% assign child_list_handle = link.title | handleize %}
+                        {% if linklists[child_list_handle].links != blank %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{ link.url }}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                               {{ link.title }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                {% for childlink in linklists[child_list_handle].links %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                                </li>
+                            {% endfor %} 
+                            </ul>
+                          </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <!-- End of navigation -->
+</header>
+
+  {% schema %}
+  {
+     "name": "Header Menu Left",
+     "settings":[
+        {
+            "type": "link_list",
+            "id":"main-menu-left",
+            "label": "Select Header Left Menu"
+        }
+     ]
+  }
+  {% endschema %}
