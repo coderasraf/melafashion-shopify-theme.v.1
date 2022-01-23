@@ -1,6 +1,28 @@
 {
-  "current": "Default",
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "main-menu-left": ""
+        }
+      },
+      "16428850334a3cc229": {
+        "type": "hero",
+        "settings": {
+          "banner_image": "shopify:\/\/shop_images\/welcome-to-my-business.jpg",
+          "section_title": "Banner Title",
+          "subtitle": "<p>hether you're browsing for someone else, or looking to a treat yourself - we've got exactly what you need!<\/p>",
+          "button_text": "Shop Now",
+          "button_url": "#"
+        }
+      }
+    },
+    "content_for_index": [
+      "16428850334a3cc229"
+    ]
+  },
   "presets": {
-    "Default": { }
+    "Default": {}
   }
 }
