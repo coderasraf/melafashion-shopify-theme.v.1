@@ -7,7 +7,19 @@
   <meta name="description" content="{{ page_description | escape }}">
   <link rel="canonical" href="{{ canonical_url }}">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Heebo:wght@100..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
   {{ content_for_header }} <!-- Header hook for plugins -->
+
   {% style %}]
 
       @font-face {
@@ -15,15 +27,11 @@
         src: url({{'Byrd-Regular.woff' | asset_url }}), format('opentype');
       }
 
-      @font-face {
-        font-family: 'Opposit Bold';
-        src: url({{ 'Opposit-Bold.otf' | asset_url }}), format('opentype');
-    
-      }
+     
 
       :root {
-        --font_body_family: 'Byrd Regular';
-        --font_heading_family: 'Opposit Bold';
+        --font_body_family: 'Roboto', sans-serif;
+        --font_heading_family: 'Bungee Shade', cursive;
       }
 
       html {
@@ -34,10 +42,14 @@
       body{
         font-family:var(--font_body_family);
       }
-    
+      p,a{
+        font-family: var(--font_body_family);
+      }
       h1{
-        font-family: var(--font_heading_family);
         font-size: 40px;
+      }
+      h1,h2,h3,h4,h5,h6{
+        font-family: var(--font_heading_family);
       }
 
   {% endstyle %}

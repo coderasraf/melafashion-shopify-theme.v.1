@@ -1,17 +1,36 @@
 
 
-<section class="featured-collection">
+<section class="featured-collection sectin-padding">
+    <div class="section-title text-center">
+        <h2>{{ section.settings.title }}</h2>
+    </div>
     <div class="container">
         <div class="featured-collection-inner">
             {% for product in collections[section.settings.collection].products limit: 6 %}
-                <div class="card mela-custom-card">
-                    <a href="{{ product.url }}">
-                        <img src="{{ product.images[0] | img_url:'large' }}" alt="{{ product.title }}">
-                    </a>
-                    <h3>
-                        <a href="{{ product.url }}">{{ product.title }}</a>
-                    </h3>
-                    <p>{{ product.price | money }}</p>
+                <div class="mela-custom-card stacked featured-{{ forloop.index }}">
+                    <div class="card-content-mela">
+                        <a href="{{ product.url }}">
+                            <div class="product-images-wrapper product-img-{{ forloop.index }}">
+                            {% assign image = product.images %}
+                            {% if image !=blank %}
+                                    <img class="main-image-mela" src="{{ image[0] | img_url:'large' }}" alt="{{ product.title }}">
+                                {% if image[1] != blank %}
+                                    {% if section.settings.second-image-hover %}
+                                        <img class="hover-image-mela" src="{{ image[1] | img_url:'large' }}" alt="{{ product.title }}">
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {{ 'product-1' | placeholder_svg_tag }}
+                            {% endif %}
+                        </div>
+                        </a>
+                        <div class="product-card-bottom">
+                            <h3>
+                                <a href="{{ product.url }}">{{ product.title }}</a>
+                            </h3>
+                            <p>{{ product.price | money }}</p>
+                        </div>
+                    </div>
                 </div>
             {% endfor %} 
         </div>
@@ -35,6 +54,11 @@
             "id": "title",
             "default": "Collection Title",
             "label": "Collection Title"
+        },
+        {
+           "type": "checkbox",
+           "id": "second-image-hover",
+           "label": "Enable Second Image on hover"
         }
     ],
     "presets":[

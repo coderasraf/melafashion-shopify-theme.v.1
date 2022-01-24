@@ -4,6 +4,10 @@
     list-style: none;
     box-sizing: border-box;
 }
+img,picture{
+    max-width: 100%;
+    display: block;
+}
 p{
     margin: 0;
 }
@@ -24,4 +28,26 @@ input,button,textarea{
 }
 input[type=submit],button{
     background-color: #f9f9f9;
+}
+.sectin-padding{
+    padding:70px 0;
+}
+.section-title{
+    margin-bottom: 40px;
+    position: relative;
+}
+.section-title::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 3px;
+    content: "";
+    background: #000;
+    z-index: -1;
+}
+
+.section-title h2 {
+    background: #fff;
+    display: inline-block;
 }
