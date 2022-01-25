@@ -29,8 +29,11 @@ input,button,textarea{
 input[type=submit],button{
     background-color: #f9f9f9;
 }
-.sectin-padding{
+.section-padding{
     padding:70px 0;
+}
+.page-main-wrapper{
+    padding: 40px 30px;
 }
 .section-title{
     margin-bottom: 40px;

@@ -73,6 +73,7 @@
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
+    transition: .3s ease-in-out;
 }
 .hover-image-mela {
 	position: absolute;
@@ -84,7 +85,10 @@
     opacity: 0;
     visibility: hidden;
 }
-
+.product-images-wrapper:hover .image-remove{
+    opacity: 0;
+    visibility: hidden;
+}
 .product-images-wrapper:hover .hover-image-mela {
     opacity: 1;
     visibility: visible;
@@ -94,6 +98,97 @@
 }
 .product-card-bottom {
     text-align: center;
+}
+
+/* ==== cart page css ===== */
+.cart-image-mela {
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+
+.table>:not(:first-child) {
+    border-top: 1px solid #ddd;
+}
+
+.cart-table-wrapper {
+    box-shadow: 0 0 10px #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.cart-price-box {
+    box-shadow: 0 0 5px #ddd;
+    padding: 20px;
+}
+
+/* ========Collection page css ========= */
+.product-card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(330px, 1fr));
+    gap: 5px;
+}
+.product-card-image{
+    position: relative;
+}
+.product-card-image img {
+    max-height: 400px;
+    height: 400px;
+    object-fit: contain;
+    transition: cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.product-card-wrapper .card{
+    justify-content: space-between;
+    border-radius: 0px !important;
+    padding: 5px 10px;
+}
+.product-bottom-details{
+    text-align: center;
+}
+.hide-hover-image{
+    transition: .3s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+}
+.product-card-image:hover .hide-hover-image{
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+}
+.show-hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: .3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+
+}
+.product-card-image:hover .show-hover-image{
+    opacity: 1;
+    visibility: visible;
+}
+
+.product-meta-info {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    background: #000;
+    color: #fff;
+    padding: 5px 10px;
 }
 
 @media(min-width:1440px){

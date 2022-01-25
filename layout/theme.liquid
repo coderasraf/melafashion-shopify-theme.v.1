@@ -21,17 +21,13 @@
   {{ content_for_header }} <!-- Header hook for plugins -->
 
   {% style %}]
-
       @font-face {
         font-family: 'Byrd Regular';
         src: url({{'Byrd-Regular.woff' | asset_url }}), format('opentype');
       }
-
-     
-
       :root {
         --font_body_family: 'Roboto', sans-serif;
-        --font_heading_family: 'Bungee Shade', cursive;
+        --font_heading_family: 'Roboto', cursive;
       }
 
       html {

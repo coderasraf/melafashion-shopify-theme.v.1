@@ -1,0 +1,92 @@
+{% if section.settings.layout == 'container' %}
+    {% assign  section_class = 'container' %}
+{% else if section.settings.layout == 'container-fluid' %}
+    {% assign section_class = 'container-fluid' %}
+{% endif %}
+
+<section class="page-wrapper">
+    <div class="{{ section_class }}">
+        <div class="page-main-wrapper">
+            <h1 class="my-3 text-center">
+                {{ page.title }} 
+                {% if section.settings.show_date %}
+                <br>
+                    <small style='display:block;font-size:15px;margin-top:14px'>
+                        {{ page.published_at | date:'%b %d, %Y' }}
+                    </small>
+                {% endif %}
+            </h1>
+
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                {% for block in section.blocks %}
+                   <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingOne{{ block.id }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{ block.id }}" aria-expanded="false" aria-controls="flush-collapseOne{{ block.id }}">
+                      {{ block.settings.title }}
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne{{ block.id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne{{ block.id }}" data-bs-parent="#accordionFlushExample{{ block.id }}">
+                    <div class="accordion-body">
+                        {{ block.settings.description }}
+                    </div>
+                  </div>
+                </div> 
+                {% endfor %}
+                
+              </div>
+              
+            <div>{{ page.content }}</div>
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name":"Faq Page",
+    "blocks": [
+        {
+            "name": "FAQ",
+            "type": "faq",
+            "limit": 16,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Faq Title",
+                    "default": "Default Title"
+                },
+                {
+                    "type":"richtext",
+                    "id": "description",
+                    "label": "Faq Details",
+                    "default": "<p>Faq details text</p>"
+                }
+            ]
+        }
+    ],
+    "settings":[
+        {
+            "type":"checkbox",
+            "id": "show_date",
+            "label": "Show Published date",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "layout",
+            "label":"Page Layout",
+            "options": [
+                {
+                    "value": "container",
+                    "label": "Container"
+                },
+                {
+                    "value":"container-fluid",
+                    "label":"Container Fluid"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

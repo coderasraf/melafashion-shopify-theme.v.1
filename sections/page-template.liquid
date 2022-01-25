@@ -1,0 +1,53 @@
+{% if section.settings.layout == 'container' %}
+    {% assign  section_class = 'container' %}
+{% else if section.settings.layout == 'container-fluid' %}
+    {% assign section_class = 'container-fluid' %}
+{% endif %}
+
+<section class="page-wrapper">
+    <div class="{{ section_class }}">
+        <div class="page-main-wrapper">
+            <h1 class="my-3 text-center">
+                {{ page.title }} 
+                {% if section.settings.show_date %}
+                <br>
+                    <small style='display:block;font-size:15px;margin-top:14px'>
+                        {{ page.published_at | date:'%b %d, %Y' }}
+                    </small>
+                {% endif %}
+            </h1>
+            
+            <div>{{ page.content }}</div>
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name":"Page Settings",
+    "settings":[
+        {
+            "type":"checkbox",
+            "id": "show_date",
+            "label": "Show Published date",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "layout",
+            "label":"Page Layout",
+            "options": [
+                {
+                    "value": "container",
+                    "label": "Container"
+                },
+                {
+                    "value":"container-fluid",
+                    "label":"Container Fluid"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

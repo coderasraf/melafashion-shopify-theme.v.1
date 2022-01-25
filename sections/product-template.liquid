@@ -1,0 +1,110 @@
+{% assign current_product = product.selected_or_first_available_variant %}
+{% assign product_image = current_product.featured_image | default:product.featured_image %}
+
+<section class="product-details-wrapper">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-6 col-12">
+        <div class="images-wrapper-product">
+          <img class="img-fluid" src="{{ product_image | img_url:'large' }}" alt="{{ product_image.alt }}" id="product-image">
+          <div class="variant-images-product">
+            {% for image in product.images %}
+              <img class="thumbnail-product-image" src="{{ image | img_url:'medium' }}" alt="{{ image.alt }}">
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <div class="product-description-box">
+          <h2>{{ product.title }}</h2>
+          <p>{{ current_product.price | money_with_currency }}</p>
+          
+          {%- form 'product', product, id: 'addToCartForm', class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+          
+          <div class="form-inner-product mb-3">
+
+          {% for product_option in product.options_with_values %}
+
+            <div class="form-group mb-2">
+              {% if product_option.name == 'size' %}
+                <label for="size">Size</label>
+                  <select class="form-control" name="size" id="size">
+                    {% for value in product_option.values %}
+                    <option {% if product_option.selected_value == value %} selected="selected" {% endif %}>{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                {% endif %}
+              </div>
+
+              <div class="form-group mb-2">
+                {% if product_option.name == 'color' %}
+                <label for="color">Color</label>
+                  <select class="form-control" name="color" id="color">
+                    {% for value in product_option.values %}
+                    <option {% if product_option.selected_value == value %} selected="selected" {% endif %}>{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                {% endif %}
+              </div>
+
+                <div class="form-group mb-2">
+                  {% if product_option.name == 'Material' %}
+                  <label for="material">Material</label>
+                    <select class="form-control" name="material" id="material">
+                      {% for value in product_option.values %}
+                      <option {% if product_option.selected_value == value %} selected="selected" {% endif %}>{{ value }}</option>
+                      {% endfor %}
+                    </select>
+                {% endif %}
+                </div>
+          {% endfor %}
+
+              <div class="form-group mb-2">
+                <label for="productSelect">Master Select</label>
+                <select name="id" id="productSelect" class="form-select">
+                  {% for variant in product.variants %}
+                    {% if variant.available %}
+                      <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} >{{ variant.title }}</option>
+                      {% else %}
+                      <option style='color:red;' value="{{ variant.id }}" disabled='disabled'>{{ variant.title }} - Not Available</option>
+                    {% endif %}                
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="form-group mb-2">
+                <label for="Quantity">Quantity</label>
+                <input required type="number" min="1" max="4" class="form-control" name="quantity" id="Quantity" value="1">
+              </div>
+
+              <button type="submit" value="Add To Cart" id="addToCart" class="btn mb-2 btn-secondary btn-lg w-100 rounded-0">Add To cart</button>
+
+             {% if section.settings.enable_dynamic_checkout %}
+             {{ form | payment_button }}
+             {% endif %}
+
+          </div>
+          {% endform %}
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+    "name":"Product Template",
+    "settings":[
+        {
+            "type": "checkbox",
+            "id": "enable_dynamic_checkout",
+            "label":"Enable Dynamic Checkout"
+        }
+    ]
+}
+{% endschema %}

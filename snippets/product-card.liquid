@@ -1,0 +1,25 @@
+<div class="mela-custom-card stacked featured-{{ forloop.index }}">
+    <div class="card-content-mela">
+        <a href="{{ product.url }}">
+            <div class="product-images-wrapper product-img-{{ forloop.index }}">
+            {% assign image = product.images %}
+            {% if image !=blank %}
+                    <img class="main-image-mela {% if image[1] != blank %}image-remove {% endif %}" src="{{ image[0] | img_url:'large' }}" alt="{{ product.title }}">
+                {% if image[1] != blank %}
+                    {% if section.settings.second-image-hover %}
+                        <img class="hover-image-mela" src="{{ image[1] | img_url:'large' }}" alt="{{ product.title }}">
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {{ 'product-1' | placeholder_svg_tag }}
+            {% endif %}
+        </div>
+        </a>
+        <div class="product-card-bottom">
+            <h3>
+                <a href="{{ product.url }}">{{ product.title }}</a>
+            </h3>
+            <p>{{ product.price | money }}</p>
+        </div>
+    </div>
+</div>

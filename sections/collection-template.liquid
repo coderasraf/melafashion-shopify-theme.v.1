@@ -1,0 +1,64 @@
+<section class="main-collection-area section-padding">
+    <div class="container">
+      {% paginate collection.products by 8 %}
+    <div class="section-title text-center">
+      <h2>{{ collection.title }}</h2>
+    </div>
+    <div class="product-card-wrapper">
+    {% for product in collection.products %}
+        <div class="product-card">
+            {% unless product.available %}
+                <div class="product-meta-info">
+                    <strong>sold out</strong>
+                </div>
+            {% endunless %}
+          <div class="product-card-image">
+            {% assign image = product.images %}
+            {% if image != blank %}
+                <a class="{% if image[1] != blank %}hide-hover-image{% endif %}" class="product-image-link" href="{{ product.url | within: collection }}">
+                <img src="{{ image[0] | img_url: 'large' }}" alt="{{ image[0].alt | escape }}">
+                </a>
+
+                {% if section.settings.show_hover_image %}
+                {% if product.images[1] != blank %}
+                <a class="show-hover-image" href="{{ product.url | within: collection }}">
+                    <img src="{{ product.images[1] | img_url: 'large' }}" alt="{{ product.images[1].alt | escape }}">
+                </a>
+                {% endif %}
+            {% endif %}
+            {% endif %}
+    
+          </div>
+          <div class="product-bottom-details">
+            <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+            <br>
+          <span class="product-price-card">{{ product.price | money }}</span>
+          </div>
+        </div>
+    {% else %}
+      <p>no matches</p>
+    {% endfor %}
+    </div>
+    {% if paginate.pages > 1 %}
+      {{ paginate | default_pagination }}
+    {% endif %}
+  {% endpaginate %}
+  
+    </div>
+  </section>
+  
+
+  {% schema %}
+  {
+      "name": "Collection Default",
+      "class": "default-collection-template",
+      "settings":[
+        {
+            "type": "checkbox",
+            "id": "show_hover_image",
+            "label":"Show second image on hover",
+            "default": true
+        }
+      ]
+  }
+  {% endschema %}
