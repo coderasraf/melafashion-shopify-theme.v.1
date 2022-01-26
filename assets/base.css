@@ -1,9 +1,50 @@
-*,::before,::after{
+:root {
+    --font_body_family: 'Roboto', sans-serif;
+    --font_heading_family: 'Italiana', cursive;
+  }
+  
+  *,::before,::after{
     margin: 0;
     padding: 0;
     list-style: none;
     box-sizing: border-box;
 }
+  html {
+    box-sizing: border-box;
+    height: 100%;
+  }
+
+  body{
+    font-family:var(--font_body_family);
+  }
+  p,a,button{
+    font-family: var(--font_body_family);
+  }
+  h1{
+    font-size: 40px;
+    font-weight:bold;
+  }
+  h1,h2,h3,h4,h5,h6{
+    font-family: var(--font_heading_family);
+    font-weight:bold;
+  }
+  .product-card-bottom h3 a{
+    font-family: var(--font_heading_family);
+    color:#000;
+    font-weight:bold;
+    font-size:19px;
+    margin-bottom: 10px;
+    display:block;
+  }
+  .product-bottom-details a {
+    font-size: 20px;
+    color: #000;
+    display: inline-block;
+    margin-bottom: 8px;
+    font-family: var(--font_heading_family);
+    font-weight: bold;
+}
+
 img,picture{
     max-width: 100%;
     display: block;

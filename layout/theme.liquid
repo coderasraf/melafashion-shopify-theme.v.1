@@ -19,43 +19,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
   {{ content_for_header }} <!-- Header hook for plugins -->
+  {% style %}
 
-  {% style %}]
-      @font-face {
-        font-family: 'Byrd Regular';
-        src: url({{'Byrd-Regular.woff' | asset_url }}), format('opentype');
-      }
-      :root {
-        --font_body_family: 'Roboto', sans-serif;
-        --font_heading_family: 'Roboto', cursive;
-      }
-
-      html {
-        box-sizing: border-box;
-        height: 100%;
-      }
-
-      body{
-        font-family:var(--font_body_family);
-      }
-      p,a{
-        font-family: var(--font_body_family);
-      }
-      h1{
-        font-size: 40px;
-      }
-      h1,h2,h3,h4,h5,h6{
-        font-family: var(--font_heading_family);
-      }
-
+    @font-face {
+      font-family: 'Byrd Regular';
+      src: url({{'Byrd-Regular.woff' | asset_url }}), format('opentype');
+    }
   {% endstyle %}
   {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
   {{ 'application.css' | asset_url | stylesheet_tag }}
   {{ 'base.css' | asset_url | stylesheet_tag }}
-  {{ 'application.js' | asset_url | script_tag }}
 </head>
 <body>
-
   <!-- {% if shop.customer_accounts_enabled %}
     {% if customer %}
       <a href="/account">account</a>
@@ -72,7 +47,7 @@
     {{ content_for_layout }}
   </main>
 
-
+  {{ 'application.js' | asset_url | script_tag }}
   {{ 'bootstrap.min.js' | asset_url | script_tag }}
 </body>
 </html>

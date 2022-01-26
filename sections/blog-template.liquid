@@ -1,0 +1,90 @@
+{% if section.settings.layout == 'container' %}
+    {% assign  section_class = 'container' %}
+{% else if section.settings.layout == 'container-fluid' %}
+    {% assign section_class = 'container-fluid' %}
+{% endif %}
+
+<div class="position-relative text-center p-3 p-md-5">
+    <div class="col-md-5 p-lg-5 mx-auto">
+        <div class="section-title">
+            <h2 class="display-4">{{ blog.title }}</h2>
+            <p class="lead">Read our latest publications.</p>
+        </div>
+    </div>
+</div>
+
+<section class="page-wrapper">
+
+    <div class="{{ section_class }}">
+
+        <div class="page-main-wrapper">
+
+        {% paginate blog.articles by 3 %}
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+
+        {% for article in blog.articles %}
+
+        <div class="cols mb-2">
+            <div class="card shadow">
+                <div class="article-featured-image">
+                    {% if article.image.src != null %}
+                        <img src="{{ article.image.src | img_url:"large" }}" class="card-img-top" alt="{{ article.image.alt }}">
+                    {% else %}
+                        {{ 'image' | placeholder_svg_tag:"card-img-top" }}
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <h3 class="mb-2">
+                        <a href="{{ article.url }}">{{ article.title }}</a>
+                    </h3>
+                    <strong class="d-block mb-2">{{ article.author }} @  {{ article.created_at | date:'%b %m, %Y' }}</strong>
+                    <p class="card-text">
+                    {% if article.excerpt.size > 0 %}
+                        {{ article.excerpt }}
+                    {% else %}
+                        {{ article.content | strip_html | truncatewords: 100 }}
+                    {% endif %}
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% render 'pagination', paginate: paginate %}
+        {% endpaginate %}
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name":"Blog Template",
+    "settings":[
+        {
+            "type":"checkbox",
+            "id": "show_date",
+            "label": "Show Published date",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "layout",
+            "label":"Page Layout",
+            "options": [
+                {
+                    "value": "container",
+                    "label": "Container"
+                },
+                {
+                    "value":"container-fluid",
+                    "label":"Container Fluid"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

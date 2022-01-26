@@ -11,11 +11,46 @@
     flex-wrap: wrap;
     align-items: center;
 }
+.header-top-area {
+    padding: 25px 0 !important;
+}
 .top-right-area-menu {
     display: flex;
     list-style: none;
 }
+.top-right-area-menu li {
+    margin: 0 10px;
+}
+.top-right-area-menu li a {
+    color: #000;
+    opacity: .8;
+}
+.top-right-area-menu li a span {
+    margin-right: 5px;
+}
+.search-bar-area .form-group {
+    position: relative;
+}
 
+.search-bar-area .form-group button {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.search-bar-area .form-group input {
+    width: 100%;
+    padding: 7px 8px;
+    width: 300px;
+    border:1px solid #000;
+    color:#000;
+}
+.search-bar-area .form-group input::placeholder{
+    color:#000;
+    opacity:.5;
+}
+
+/* =====Welcome area css ====== */
 .hero-banner-area {
     padding: 40px 0;
     position: relative;
@@ -24,7 +59,15 @@
     overflow: hidden;
     width: 100%;
 }
-
+.hero-banner-area h1 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.hero-banner-area p {
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 300;
+}
 .hero-banner-area img, .hero-banner-area svg {
     position: absolute;
     width: 100%;
@@ -50,9 +93,7 @@
 .featured-1 .product-img-1{
     aspect-ratio: 1 / 1.2;
 }
-.mela-custom-card{
-    border: 1px solid #ddd;
-}
+
 .stacked{
     display: grid;
 }
