@@ -3,7 +3,6 @@
   {% assign number_of_comments = article.comments_count %}
 {% endif %}
 
-
 {% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
 {% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'abbreviated_date' }}</time>{% endcapture %}
 
@@ -40,8 +39,15 @@
 
             <div class="card shadow p-3">
               {% form 'new_comment', article %}
-
-                {{ form.errors | default_errors }}
+                {% for error in form.errors %}
+                  <div class="alert alert-danger">
+                    {% if error == 'form' %}
+                      {{ form.effors.messages.error }}
+                    {% else %}
+                      {{ form.errors.translated_fields[error] }} {{ form.errors.messages[error] }}
+                    {% endif %}
+                  </div>
+                {% endfor %}
 
                 <div class="form-group mb-2">
                   <label class="form-label" for="CommentAuthor">Name :</label>
