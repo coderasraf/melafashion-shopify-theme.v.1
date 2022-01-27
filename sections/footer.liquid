@@ -1,13 +1,49 @@
+<footer class="footer-section {{ section.class }} section-padding bg-light mt-4">
+    <div class="container">
+        <div class="row row-cols-{{ section.settings.cols_num }}">
+            {% for block in section.blocks %}
+             {% assign item = block.settings %}
+                {% if block.type == 'navigation' %}
+                <div class="col">
+                    <h3 class="mb-3">{{ item.title }}</h3>
+                    {% assign menu_linklists = item.menu_links %}
+                        <ul class="list-unstyled text-small">
+                            {% for link in linklists[menu_linklists].links %}
+                                <li class="list-item">
+                                    <a href="{{ link.url }}">{{ link.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                </div>
+                {% else if block.type == 'text' %}
+                <div class="col">
+                    <h3 class="mb-3">{{ item.details_title }}</h3>
+                    <p class="lead">{{ item.details }}</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</footer>
+
 {{ 'application.js' | asset_url | script_tag }}
 {{ 'bootstrap.min.js' | asset_url | script_tag }}
-
-
-
 
 {% schema %}
 {
     "name":"Footer",
     "class": "footer-menu",
+    "settings":[
+        {
+            "type": "range",
+            "id":"cols_num",
+            "default":3,
+            "min": 2,
+            "max": 4,
+            "label": "Number of columns"
+        }
+    ],
+    "max_blocks": 4,
     "blocks":[
         {
             "name": "Navigation",
@@ -25,6 +61,24 @@
                     "label": "Footer menu"
                 }
             ]
+        },
+        {
+            "type": "text",
+            "name": "Store Details",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "details_title",
+                    "label": "Title",
+                    "default": "Store details title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "details",
+                    "label": "Store Details",
+                    "default": "<p>Enter your store details</p>"
+                }
+            ]   
         }
     ]
 }

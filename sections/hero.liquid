@@ -1,6 +1,6 @@
 <section class="hero-banner-area" >
     {% if section.settings.banner_image %}
-        <img src="{{ section.settings.banner_image | img_url: 'large' }}" alt="{{ section.settings.banner_image.alt }}">
+        <img src="{{ section.settings.banner_image | img_url: 'master' }}" alt="{{ section.settings.banner_image.alt }}">
     {% else %}
     {% capture current %}{% cycle 1,2 %}{% endcapture %}
     {{ 'lifestyle-' | append: current | placeholder_svg_tag }}
