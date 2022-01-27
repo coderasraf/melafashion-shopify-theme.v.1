@@ -1,0 +1,31 @@
+{{ 'application.js' | asset_url | script_tag }}
+{{ 'bootstrap.min.js' | asset_url | script_tag }}
+
+
+
+
+{% schema %}
+{
+    "name":"Footer",
+    "class": "footer-menu",
+    "blocks":[
+        {
+            "name": "Navigation",
+            "type": "navigation",
+            "settings":[
+                {
+                    "type":"text",
+                    "id": "title",
+                    "label": "Menu title",
+                    "default": "Quick Links"
+                },
+                {
+                    "type":"link_list",
+                    "id":"menu_links",
+                    "label": "Footer menu"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
