@@ -18,6 +18,9 @@
 <div class="container py-4">
   <div class="row">
     <div class="col-12 col-md-8">
+      <div class="article-image my-3">
+        <img src="{{ article.image.src | img_url:'large' }}" alt="{{ article.image.alt }}">
+      </div>
         <div>{{ article.content }}</div>
         <div class="comment-area my-4">
           {% if blog.comments_enabled? %}
@@ -50,21 +53,27 @@
                 {% endfor %}
 
                 <div class="form-group mb-2">
-                  <label class="form-label" for="CommentAuthor">Name :</label>
-                <input class="form-control" type="text" name="comment[author]" id="CommentAuthor" placeholder="name" value="{{ form.author }}" autocapitalize="words">
+                  <div class="form-floating">
+                  <input class="form-control" type="text" name="comment[author]" id="CommentAuthor" placeholder="name" value="{{ form.author }}" autocapitalize="words">
+                  <label class="form-label" for="CommentAuthor">Name</label>
+                  </div>
                 </div>
 
                 <div class="form-group mb-2">
-                  <label class="form-label" for="CommentEmail">Email :</label>
-                <input class="form-control"  type="email" name="comment[email]" id="CommentEmail" placeholder="email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                  <div class="form-floating">
+                    <input class="form-control"  type="email" name="comment[email]" id="CommentEmail" placeholder="email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                <label class="form-label" for="CommentEmail">Email</label>
+                  </div>
                 </div>
 
                 <div class="form-group mb-2">
-                  <label class="form-label" for="CommentBody">Message :</label>
-                <textarea class="form-control" name="comment[body]" id="CommentBody" placeholder="message">{{ form.body }}</textarea>
+                  <div class="form-floating">
+                    <textarea class="form-control" name="comment[body]" id="CommentBody" placeholder="message">{{ form.body }}</textarea>
+                <label class="form-label" for="CommentBody">Message</label>
+                  </div>
                 </div>
 
-                <button class="btn btn-primary btn-lg text-center my-3 " type="submit" value="Enter your comment">Enter your comment</button>
+                <button class="btn btn-primary flot-right btn-lg rounded-0 my-3 " type="submit" value="Enter your comment">Enter your comment</button>
               {% endform %}
             </div>
           {% endif %}

@@ -1,14 +1,59 @@
-<h1>{{ page.title }}</h1>
-{% form 'contact' %}
-  {% if form.posted_successfully? %} Thank you for your contact {% endif %}
-  {{ form.errors | default_errors }}
-  <label for="ContactFormName">name</label>
-  <input type="text" id="ContactFormName" name="contact[name]">
-  <label for="ContactFormEmail">email</label>
-  <input type="email" id="ContactFormEmail" name="contact[email]">
-  <label for="ContactFormPhone">phone</label>
-  <input type="tel" id="ContactFormPhone" name="contact[phone]">
-  <label for="ContactFormMessage">message</label>
-  <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
-  <input type="submit" value="send">
-{% endform %}
+<section class="contact-form-area py-5">
+  <div class="container">
+    <div class="col-md-8 offset-md-2">
+      <div class="form-inner">
+
+        <div class="section-title text-center my-4">
+          <h2>{{ page.title }}</h2>
+        </div>
+        <div class="card shadow p-4">
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+            <div class="alert alert-success">
+              Thank you for your contact 
+            </div>
+          {% endif %}
+
+            {% for error in form.errors %}
+            <div class="alert alert-danger">
+              {% if error == 'form' %}
+                {{ form.effors.messages.error }}
+              {% else %}
+                {{ form.errors.translated_fields[error] }} {{ form.errors.messages[error] }}
+              {% endif %}
+            </div>
+          {% endfor %}
+
+            <div class="main-contact-form">
+              <div class="form-floating">
+                <input class="form-control rounded-0" type="text" id="ContactFormName" name="contact[name]">
+                <label for="ContactFormName">Name</label>
+              </div>
+
+            
+              <div class="form-floating my-4">
+                <input class="form-control rounded-0" type="email" id="ContactFormEmail" name="contact[email]">
+                <label for="ContactFormEmail">Email</label>
+              </div>
+              
+              <div class="form-floating my-4">
+                <input class="form-control rounded-0" type="tel" id="ContactFormPhone" name="contact[phone]">
+              <label for="ContactFormPhone">phone</label>
+              </div>
+
+              
+              <div class="form-floating">
+                <textarea class="form-control rounded-0" rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
+              <label for="ContactFormMessage">Message</label>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg rounded-0 my-3" value="send">Send Message</button>
+            </div>
+          
+        {% endform %}
+      </div>
+
+      </div>
+    </div>
+  </div>
+</section>
