@@ -1,0 +1,76 @@
+<style>
+    .sidebar-image-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+</style>
+<div class="sidebar-section">
+    <div class="inner-sidebar">
+        <div class="sidebar-title p-2 bg-light">
+            <h3>{{ section.settings.title }}</h3>
+        </div>
+        <div class="sidebar-image-wrapper">
+            {% for block in section.blocks %}
+                {% if block.type == 'sidebar' %}
+                  <a href="{{ block.settings.url }}">
+                      <img src="{{ block.settings.sidebar_image | img_url: 'medium' }}" alt="">
+                  </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="sidebar-text-wrapper p-2 bg-light">
+            {% for block in section.blocks %}
+                {% if block.type == 'sidebar_text' %}
+                    <p class="lead">{{ block.settings.richtext-side }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Sidebar",
+    "settings":[
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Sidebar title",
+            "default": "Sidebar title"
+        }
+    ],
+    "blocks":[
+        {
+            "name": "Sidebar Image",
+            "type": "sidebar",
+            "limit": 2,
+            "settings":[
+                {
+                    "type": "image_picker",
+                    "id": "sidebar_image",
+                    "label": "Choose Sidebar Image"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Linking your page"
+                }
+            ]
+        },
+        {
+            "name": "Sidebar Text",
+            "type":"sidebar_text",
+            "settings":[
+                {
+                    "type": "richtext",
+                    "id": "richtext-side",
+                    "label":"Sidebar text block"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
