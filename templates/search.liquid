@@ -1,22 +1,54 @@
-{% paginate search.results by 10 %}
-  <form action="/search" method="get" role="search">
-    <input type="search" name="q" value="{{ search.terms | escape }}">
-    <button type="submit">search</button>
-  </form>
-
-  {% if search.performed %}
-    {% for item in search.results %}
-      {% if item.featured_image %}
-        <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
-          {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
-        </a>
+{% paginate search.results by 9 %}
+<section class="search-page-section">
+  <div class="container">
+    <div class="row my-3">
+      <form action="/search" method="GET" role="search">
+        <div class="form-group custom-group">
+            <input name="q" type="search" class="form-control" placeholder="Search Products and brands" value="{{ search.terms | escape }}">
+            <button class="btn btn-success rounded-0 search-button ml-button" type="submit">
+              Search
+                {% render 'search-icon' %}
+            </button>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="search-result alert alert-success my-2">
+        <h2 class="text-center">
+          {% if search.terms != blank %}
+          Your Search Result for "{{ search.terms | escape }}""
+          {% endif %}
+        </h2>
+      </div>
+    </div>
+    <div class="row row-cols-3 g-2">
+      {% if search.performed %}
+        {% for item in search.results %}
+        {% if item.object_type == 'product' %}
+          <div class="col">
+          <div class="card shadow">
+              {% if item.featured_image %}
+                <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
+                  {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
+                </a>
+              {% endif %}
+            <div class="card-body">
+              <h5>{{ item.title | link_to: item.url }}</h5>
+              <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% else %}
+          no results
+        {% endfor %}
       {% endif %}
-      <h5>{{ item.title | link_to: item.url }}</h5>
-      <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
-    {% else %}
-      no results
-    {% endfor %}
-  {% endif %}
+    </div>
 
-  {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+    <div class="row">
+      {% render 'pagination', paginate:paginate %}
+    </div>
+  </div>
+</section>
+  
 {% endpaginate %}
