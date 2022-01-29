@@ -5,6 +5,24 @@
       <form action="/search" method="GET" role="search">
         <div class="form-group custom-group">
             <input name="q" type="search" class="form-control" placeholder="Search Products and brands" value="{{ search.terms | escape }}">
+
+            <div class="form-check-wrapper my-2">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="type" id="product_type" value="product">
+                <label class="form-control-label" for="product_type">Product</label>
+              </div>
+  
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="type" id="article" value="article">
+                <label class="form-control-label" for="article">Article</label>
+              </div>
+  
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="type" id="page" value="page">
+                <label class="form-control-label" for="Page">Page</label>
+              </div>
+            </div>
+
             <button class="btn btn-success rounded-0 search-button ml-button" type="submit">
               Search
                 {% render 'search-icon' %}
@@ -13,12 +31,13 @@
       </form>
     </div>
     <div class="row">
-      <div class="search-result alert alert-success my-2">
-        <h2 class="text-center">
+      <div class="search-result alert alert-success mb-4">
+        <h2>
           {% if search.terms != blank %}
           Your Search Result for "{{ search.terms | escape }}""
           {% endif %}
         </h2>
+        <p>Your total {{ search.results_count }} Results found!</p>
       </div>
     </div>
     <div class="row row-cols-3 g-2">
@@ -30,6 +49,20 @@
               {% if item.featured_image %}
                 <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
                   {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
+                </a>
+              {% endif %}
+            <div class="card-body">
+              <h5>{{ item.title | link_to: item.url }}</h5>
+              <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+            </div>
+          </div>
+        </div>
+        {% else if item.product_type == 'article' %}
+        <div class="col">
+          <div class="card shadow">
+              {% if item.image %}
+                <a href="{{ item.url | within: article }}" title="{{ item.title | escape }}">
+                  {{ item.image.src | img_url: 'master' | img_tag: item.image.alt }}
                 </a>
               {% endif %}
             <div class="card-body">

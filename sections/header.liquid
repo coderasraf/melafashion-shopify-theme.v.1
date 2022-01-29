@@ -24,8 +24,8 @@
                 <div class="search-bar-area">
                     <form action="/search" method="GET" role="search">
                         <div class="form-group">
-                            <input name="q" type="search" placeholder="Search Products and brands" value="{{ search.terms | escape }}">
-                            <button class="btn btn-warning rounded-0 search-button ml-button" type="submit">
+                            <input class="shadow" name="q" type="search" placeholder="Search Products and brands" value="{{ search.terms | escape }}">
+                            <button class="btn btn-success rounded-0 search-button ml-button" type="submit">
                                 {% render 'search-icon' %}
                             </button>
                         </div>
