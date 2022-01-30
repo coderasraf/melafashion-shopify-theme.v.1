@@ -1,0 +1,91 @@
+<section class="main-collection-area section-padding">
+    <div class="container">
+      {% paginate collection.products by 8 %}
+    <div class="section-title text-center">
+      <h2>{{ collection.title }}</h2>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-8 col-12">
+      
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="product-sorting">
+          <select name="sorting" id="sort_by" class="form-select">
+            {% for option in collection.sort_options %}
+              <option value="{{ option.value }}"
+              {% if option.value == collection.sort_by %}
+              selected="selected"
+              {%endif%}>{{ option.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div> 
+
+    <div class="main-product-wrap">
+      <div class="filter-wrapper shadow p-2">
+
+        {% render 'filter' %}
+        
+      </div>
+      <!-- ===Main collection template === -->
+      <div class="product-card-wrapper">
+        {% for product in collection.products %}
+            <div class="product-card">
+                {% unless product.available %}
+                    <div class="product-meta-info">
+                        <strong>sold out</strong>
+                    </div>
+                {% endunless %}
+              <div class="product-card-image">
+                {% assign image = product.images %}
+                {% if image != blank %}
+                    <a class="{% if image[1] != blank %}hide-hover-image{% endif %}" class="product-image-link" href="{{ product.url | within: collection }}">
+                    <img src="{{ image[0] | img_url: 'large' }}" alt="{{ image[0].alt | escape }}">
+                    </a>
+    
+                    {% if section.settings.show_hover_image %}
+                    {% if product.images[1] != blank %}
+                    <a class="show-hover-image" href="{{ product.url | within: collection }}">
+                        <img src="{{ product.images[1] | img_url: 'large' }}" alt="{{ product.images[1].alt | escape }}">
+                    </a>
+                    {% endif %}
+                {% endif %}
+                {% endif %}
+        
+              </div>
+              <div class="product-bottom-details">
+                <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+                <br>
+              <span class="product-price-card">{{ product.price | money }}</span>
+              </div>
+            </div>
+        {% else %}
+          <p>no matches</p>
+        {% endfor %}
+        </div>
+
+    </div>
+
+    
+    {% render 'pagination', paginate: paginate  %}
+  {% endpaginate %}
+  
+    </div>
+  </section>
+  
+
+  {% schema %}
+  {
+      "name": "Collection Default",
+      "class": "default-collection-template",
+      "settings":[
+        {
+            "type": "checkbox",
+            "id": "show_hover_image",
+            "label":"Show second image on hover",
+            "default": true
+        }
+      ]
+  }
+  {% endschema %}

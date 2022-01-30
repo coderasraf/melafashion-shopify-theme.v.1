@@ -36,14 +36,23 @@
                     <ul class="top-right-area-menu">
                         <li>
                             <a href="#">
-                                <span>{% render 'store-finder.liquid' %}</span> Store Finder
+                                <span>{% render 'store-finder.liquid' %}</span> {{ "general.Layout.store_finder_text" | t }}
                             </a>
                         </li>
-
                         <li>
-                            <a href="#">
-                               <span>{% render 'my-account-icon.liquid' %}</span> My Account
-                            </a>
+                        {% if shop.customer_accounts_enabled %}
+                        {% if customer %}
+                        <a href="/account">
+                            <span>{% render 'my-account-icon.liquid' %}</span> {{ "general.Layout.account_text" | t }}
+                        </a>
+                        {{ 'log out'  | customer_logout_link }}
+                        {% else %}
+                        {% render 'my-account-icon.liquid' %}
+                        <a href="{{ routes.account_login_url }}"> {{ "general.Layout.login_text" | t }} </a>
+                        /
+                        <a href="{{ routes.account_register_url }}"> {{ "general.Layout.register_text" | t }} </a>
+                        {% endif %}
+                    {% endif %}
                         </li>
                     </ul>
                 </div>
@@ -54,7 +63,7 @@
     <!-- End of header top -->
 
     <!-- Start of navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar shadow navbar-expand-lg navbar-light bg-light">
         <div class="container">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

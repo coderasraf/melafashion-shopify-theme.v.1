@@ -141,6 +141,51 @@
     text-align: center;
 }
 
+.filter-group-display__submit input {
+    font-size: 14px;
+    border: none;
+    padding: 3px 21px;
+    background-color: tomato !important;
+    color: #fff;
+}
+
+.filter-group {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+.filter-group-summary div span {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    border-bottom: 1px solid #ddd;
+}
+.filter-group-display__submit {
+    margin-top: 5px;
+}
+
+@media(min-width:768px){
+    .main-product-wrap{
+        display: grid;
+        grid-template-areas: 
+        "filter product product product"
+        "filter product product product"
+        "filter product product product"
+        
+        ;
+    }
+    .filter-wrapper{
+        grid-area:filter;
+        min-width: 200px;
+        z-index: 999;
+    }
+    .main-product-wrap .product-card-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 10px;
+    }
+}
+
 /* ==== cart page css ===== */
 .cart-image-mela {
     width: 100px;
