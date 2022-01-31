@@ -1,28 +1,49 @@
-<!-- /templates/customers/login.liquid -->
+<section class="login-section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8  offset-md-2 col-12">
+                <div class="login-main-wrapper card shadow p-4">
+                    <h2 class="mb-4">Login</h2>
+                    {% form 'customer_login' %}
 
-<h2>Login</h2>
-{% form 'customer_login' %}
+                    {% if form.errors %}
+                        <div class="alert alert-warning">
+                            {{ form.errors | default_errors }}
+                        </div>
+                    {% endif %}
 
-{{ form.errors | default_errors }}
+                    <div class="form-floating mb-3">
+                    <input class="form-control" type="email" name="customer[email]" />
+                    <label for="customer_email">Email Address</label>
+                    </div>
 
-<label for="customer_email">Email Address</label>
-<input type="email" name="customer[email]" />
+                    <div class="form-floating mb-3">
+                        
+                    <input class="form-control" type="password" name="customer[password]" />    
+                    <label for="customer_password">Password</label>
+                    </div>
 
-<label for="customer_password">Password</label>
-<input type="password" name="customer[password]" />
+                    <button class="btn btn-success rounded-0 w-100" type="submit">Login</button>
 
-<input type="submit" value="Sign In" />
+                    {% endform %}
 
-{% endform %}
+                    <div class="login-back mt-4 text-center">
+                        Don't have an account <a href="{{ routes.account_register_url }}"><strong>Register</strong></a>
+                    </div>
 
-<h2>Forgot Password</h2>
-{% form 'recover_customer_password' %}
+                    <!-- <h2>Forgot Password</h2>
+                    {% form 'recover_customer_password' %}
 
-{{ form.errors | default_errors }}
+                    {{ form.errors | default_errors }}
 
-<label for="customer_email">Email Address</label>
-<input type="email" name="email" />
+                    <label for="customer_email">Email Address</label>
+                    <input type="email" name="email" />
 
-<input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" />
 
-{% endform %}
+                    {% endform %} -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

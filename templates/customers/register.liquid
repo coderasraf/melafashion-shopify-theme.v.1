@@ -1,21 +1,46 @@
-<!-- /templates/customers/register.liquid -->
+<section class="login-section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8  offset-md-2 col-12">
+                <div class="login-main-wrapper card shadow p-4">
+                    <h2 class="mb-4">Create An Account</h2>
+                    {% form 'create_customer' %}
 
-{% form 'create_customer' %}
+                    {% include 'form-errors', form: form %}
 
-{{ form.errors | default_errors }}
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" value="" name="customer[first_name]" size="30" />
+                    <label for="first_name">First Name</label>
+                </div>
 
-<label for="first_name">First Name</label>
-<input type="text" value="" name="customer[first_name]" size="30" />
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" value="" name="customer[last_name]" size="30" />
+                    <label for="last_name">Last Name</label>
+                </div>
 
-<label for="last_name">Last Name</label>
-<input type="text" value="" name="customer[last_name]" size="30" />
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="email" value="" name="customer[email]" size="30" />
+                    <label for="email">Email Address</label>
+                </div>
+                
+                
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="password" value="" name="customer[password]" size="30" />
+                    <label for="password">Password</label>
+                </div>
 
-<label for="email">Email Address</label>
-<input type="email" value="" name="customer[email]" size="30" />
+                <button class="btn btn-success w-100 rounded-0" type="submit">Create an Account</button>
 
-<label for="password">Password</label>
-<input type="password" value="" name="customer[password]" size="30" />
+                {% endform %}
+                <div class="login-back mt-4 text-center">
+                    Already have an account <a href="{{ routes.account_login_url }}"><strong>Login</strong></a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<input type="submit" value="Create" />
 
-{% endform %}
+
+
