@@ -1,17 +1,36 @@
-<!-- /templates/customers/activate_account.liquid -->
-{% form 'activate_customer_password' %}
-{{ form.errors | default_errors }}
-<div class="password">
-  <label for="password">Password</label>
-  <input type="password" name="customer[password]" />
-</div>
-<div class="password_confirm">
-  <label for="password_confirmation">Password Confirmation</label>
-  <input type="password" name="customer[password_confirmation]" />
-</div>
-<div class="action_bottom">
-  <input type="submit" value="Activate Account" />
-  <span>or</span>
-  <input type="submit" name="decline" value="Decline Invitation" />
-</div>
-{% endform %}
+<section class="section-padding activation-password-page"> 
+  <div class="container">
+    <div class="row">
+      <div class="section-title text-center">
+        <h2>Activate Your Account</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-sm-12">
+        
+      <div class="card shadow ">
+        <div class="card-body">
+          {% form 'activate_customer_password' %}
+          {% include 'form-errors', form: form %}
+          <div class="password form-floating mb-3">
+            <input class="form-control" type="password" name="customer[password]" />
+            <label for="password">Password</label>
+          </div>
+          <div class="password_confirm form-floating mb-3">
+            <input class="form-control" type="password" name="customer[password_confirmation]" />
+            <label for="password_confirmation">Password Confirmation</label>
+          </div>
+          <div class="action_bottom">
+            <button class="btn btn-success rounded-0" type="submit" value="Activate Account">Activate Account</button>
+            <span>or</span>
+            <button class="btn btn-danger rounded-0" type="submit" name="decline" value="Decline Invitation">
+              Decline Invitation
+            </button>
+          </div>
+          {% endform %}
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>

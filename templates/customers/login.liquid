@@ -29,19 +29,27 @@
 
                     <div class="login-back mt-4 text-center">
                         Don't have an account <a href="{{ routes.account_register_url }}"><strong>Register</strong></a>
+                        OR
+                        <span class="forgot-password"><strong>Forget Password</strong></span>
                     </div>
 
-                    <!-- <h2>Forgot Password</h2>
-                    {% form 'recover_customer_password' %}
+                    <div class="reset-password-box">
+                        <h2 class="mb-4">Forgot Password</h2>
+                        {% form 'recover_customer_password' %}
 
-                    {{ form.errors | default_errors }}
+                        {% if form.errors %}
+                        <div class="alert  alert-warning">
+                            {{ form.errors | default_errors }}
+                        </div>
+                        {% endif %}
 
-                    <label for="customer_email">Email Address</label>
-                    <input type="email" name="email" />
+                        <label class="form-label" for="customer_email">Email Address</label>
+                        <input class="form-control rounded-0 mb-3" type="email" name="email" />
 
-                    <input type="submit" value="Submit" />
+                        <button class="btn btn-primary rounded-0" type="submit" value="Submit">Reset Password</button>
 
-                    {% endform %} -->
+                        {% endform %}
+                    </div>
                 </div>
             </div>
         </div>

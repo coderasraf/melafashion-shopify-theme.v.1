@@ -39,5 +39,8 @@
   </main>
 
   {% section 'footer' %}
+  <div class="overlay"></div>
+  {{ 'application.js' | asset_url | script_tag }}
+  {{ 'bootstrap.min.js' | asset_url | script_tag }}
 </body>
 </html>
