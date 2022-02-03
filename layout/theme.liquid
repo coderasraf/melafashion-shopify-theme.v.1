@@ -10,29 +10,18 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Heebo:wght@100..900&display=swap"
-    rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
   {{ content_for_header }} <!-- Header hook for plugins -->
-  {% style %}
 
-    @font-face {
-      font-family: 'Byrd Regular';
-      src: url({{'Byrd-Regular.woff' | asset_url }}), format('opentype');
-    }
-  {% endstyle %}
+  {{ 'font-styles.css' | asset_url | stylesheet_tag }}
   {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
   {{ 'application.css' | asset_url | stylesheet_tag }}
   {{ 'base.css' | asset_url | stylesheet_tag }}
 </head>
 <body>
-
- {% section 'header' %}
+  
+  {% section 'translation' %}
+  {% section 'header' %}
 
   <main role="main">
     {{ content_for_layout }}

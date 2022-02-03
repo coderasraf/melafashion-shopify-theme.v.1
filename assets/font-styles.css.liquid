@@ -1,0 +1,18 @@
+{% assign fontHeader = settings.header_text_font %}
+{% assign fontBody = settings.body_text_font %}
+{% assign fontBodySize = settings.body_font_size %}
+
+{{ fontHeader | font_face }}
+{{ fontBody | font_face }}
+
+:root {
+
+  --font_body_family: {{ fontBody.family }}, {{ fontBody.fallback_families }};
+
+  --font_heading_family: {{ fontHeader.family }}, {{ fontHeader.fallback_families }};
+}
+
+body {
+  font-family: var(--font_body_family);
+  font-size: {{ fontBodySize }}px !important;
+}

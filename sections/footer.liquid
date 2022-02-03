@@ -23,6 +23,15 @@
                 {% endif %}
             {% endfor %}
         </div>
+        <div class="row text-center mt-3">
+            <div class="col text-center">
+                <div class="payment-icons d-flex justify-content-center">
+                    {% for payment_type in shop.enabled_payment_types %}
+                        <img src="{{ payment_type | payment_type_img_url }}" alt="">
+                    {% endfor %}
+                 </div>
+            </div>
+        </div>
     </div>
 </footer>
 

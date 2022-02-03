@@ -70,3 +70,16 @@ if(document.getElementById('country')){
 
     })
 }
+
+
+// Theme localization js code
+
+const localItems = document.querySelectorAll('#localeItem');
+if(localItems.length > 0){
+    localItems.forEach(item => {
+        item.addEventListener('click', (event)=>{
+            document.getElementById('localeCode').value = item.getAttribute('lang');
+            document.getElementById('localization_form_tag').submit();
+        })
+    })
+}

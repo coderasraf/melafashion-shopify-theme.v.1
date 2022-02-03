@@ -1,10 +1,49 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Themekit template theme",
+    "theme_name": "Melafashion",
     "theme_version": "1.0.0",
-    "theme_author": "Shopify",
-    "theme_documentation_url": "https:\/\/github.com\/Shopify\/themekit",
-    "theme_support_url": "https:\/\/github.com\/Shopify\/themekit\/issues"
+    "theme_author": "Hassasraf",
+    "theme_documentation_url": "https://github.com/coderasraf/melafashion-shopify-theme.v.1",
+    "theme_support_url": "https://github.com/coderasraf/"
+  },
+  {
+    "name": "Typhography",
+    "settings":[
+      {
+        "type": "header",
+        "content": "Heading Style"
+      },
+      {
+        "type": "font_picker",
+        "id": "header_text_font",
+        "label": "Heading Font",
+        "default": "mono"
+      },
+      {
+        "type": "header",
+        "content": "Body font Style"
+      },
+      {
+        "type": "font_picker",
+        "id": "body_text_font",
+        "label": "Body Font",
+        "default": "mono"
+      },
+      {
+        "type": "header",
+        "content": "Body font size"
+      },
+      {
+        "type": "range",
+        "id": "body_font_size",
+        "label": "Body font size",
+        "default": 14,
+        "step": 1,
+        "max": 18,
+        "min": 12,
+        "unit": "px"
+      }
+    ]
   }
 ]
