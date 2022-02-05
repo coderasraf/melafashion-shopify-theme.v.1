@@ -7,7 +7,7 @@
     <div class="container">
         <div class="featured-collection-inner">
             {% for product in collections[section.settings.collection].products limit: 6 %}
-                {% snipets 'product-card' %}
+                {% include 'product-card', product: product %}
             {% endfor %} 
         </div>
     </div>

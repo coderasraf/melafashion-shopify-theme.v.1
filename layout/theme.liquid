@@ -10,10 +10,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
 
   {{ content_for_header }} <!-- Header hook for plugins -->
 
   {{ 'font-styles.css' | asset_url | stylesheet_tag }}
+  <!-- {{ 'slick.css' | asset_url | stylesheet_tag }} -->
   {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
   {{ 'application.css' | asset_url | stylesheet_tag }}
   {{ 'base.css' | asset_url | stylesheet_tag }}
@@ -28,8 +31,13 @@
   </main>
 
   {% section 'footer' %}
+  {% section 'product-details-modal' %}
   <div class="overlay"></div>
-  {{ 'application.js' | asset_url | script_tag }}
+
+  {{ 'jquery.min.js' | asset_url | script_tag }}
   {{ 'bootstrap.min.js' | asset_url | script_tag }}
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  {{ 'application.js' | asset_url | script_tag }}
+
 </body>
 </html>

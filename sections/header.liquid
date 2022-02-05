@@ -46,8 +46,6 @@
                         <a href="/account">
                             <span>{% render 'my-account-icon.liquid' %}</span> {{ "general.Layout.account_text" | t }}
                         </a>
-                        /
-                        {{ 'Logout'  | customer_logout_link }}
                         {% else %}
                         {% render 'my-account-icon.liquid' %}
                         <a href="{{ routes.account_login_url }}"> {{ "general.Layout.login_text" | t }} </a>

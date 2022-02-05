@@ -30,7 +30,7 @@
 }
 .search-bar-area {
   position: relative;
-  z-index: 99999;
+  z-index: 9;
 }
 .search-bar-area .form-group {
   position: relative;
@@ -326,6 +326,23 @@
   padding: 5px 10px;
 }
 
+.bottom-info-add {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease-in-out;
+}
+.product-card-image:hover .bottom-info-add {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* =========== Search page css ============ */
 .custom-group {
   position: relative;
@@ -448,6 +465,75 @@
   padding: 8px;
   transition: 0.3s ease-in-out;
   display: flex;
+}
+
+/* Product details modal */
+
+.product-modal-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  height: 500px;
+  overflow-y: scroll;
+  width: 90vw;
+  z-index: 9999999;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease-in-out;
+}
+.featured-modal-image img {
+  transition: 0.3s ease-in-out;
+}
+.modal-close {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  font-size: 30px;
+  height: 40px;
+  width: 40px;
+  border: 2px solid #000;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.product-modal-details.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.product-img-thumb {
+  display: flex;
+  overflow-x: scroll;
+}
+.product-img-thumb::-webkit-scrollbar {
+  background: #fff;
+  width: 1em;
+  border-radius: 30px;
+}
+
+.product-img-thumb::-webkit-scrollbar-thumb {
+  background: #ddd;
+  width: 10px;
+  border-radius: 30px;
+}
+.product-img-thumb img {
+  width: 100px;
+  height: 100px;
+  margin: 0 4px;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.featured-modal-image img {
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
 @media (min-width: 992px) {

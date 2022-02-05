@@ -1,0 +1,32 @@
+<div class="product-card">
+    {% unless product.available %}
+        <div class="product-meta-info">
+            <strong>sold out</strong>
+        </div>
+    {% endunless %}
+  <div class="product-card-image">
+    {% assign image = product.images %}
+    {% if image != blank %}
+        <a class="{% if image[1] != blank %}hide-hover-image{% endif %}" class="product-image-link" href="{{ product.url | within: collection }}">
+        <img src="{{ image[0] | img_url: 'large' }}" alt="{{ image[0].alt | escape }}">
+        </a>
+
+        {% if section.settings.show_hover_image %}
+        {% if product.images[1] != blank %}
+        <a class="show-hover-image" href="{{ product.url | within: collection }}">
+            <img src="{{ product.images[1] | img_url: 'large' }}" alt="{{ product.images[1].alt | escape }}">
+        </a>
+        {% endif %}
+    {% endif %}
+    {% endif %}
+    <div class="bottom-info-add">
+      <button product-handle="{{ product.handle }}" id="showProduct" class="mela-btn" type="button">👁</button>
+      <button id="addToCart" class="mela-btn" type="button">Add To Cart</button>
+    </div>
+  </div>
+  <div class="product-bottom-details">
+    <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+    <br>
+  <span class="product-price-card">{{ product.price | money }}</span>
+  </div>
+</div>

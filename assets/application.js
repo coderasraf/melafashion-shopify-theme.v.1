@@ -1,3 +1,6 @@
+
+const overlay = document.querySelector('.overlay');
+
 // Collection page sorting javascript code
 const sort_by = document.querySelector('#sort_by');
     if(sort_by != null){
@@ -14,7 +17,6 @@ const modal = document.querySelector('.adress-modal');
     if(modal != null){
     const showModal = document.getElementById('showModal');
     const closeBtn = document.getElementById('closeBtn');
-    const overlay = document.querySelector('.overlay');
 
     showModal.addEventListener('click', function(){
         modal.classList.add('active');
@@ -135,3 +137,62 @@ function fetchPredectiveSearch(){
         });
     
 }
+
+// product details modal
+
+
+
+const productModalBtns = document.querySelectorAll('#showProduct');
+const productDetailsBox= document.querySelector(".product-modal-details");
+const closeModal = document.querySelector('.modal-close');
+
+
+   productModalBtns.forEach((productModalBtn) => {
+    productModalBtn.addEventListener('click', (e) =>{
+
+        var productHandle = e.target.getAttribute('product-handle');
+
+        var url = '/products/'+productHandle+'.js';
+        fetch(url)
+        .then(respn => respn.json())
+        .then(data => {
+            var  featuredImage = document.querySelector('#featuredImage');
+            var productImgThumb = document.querySelector('.product-img-thumb');
+            productImgThumb.innerHTML = '';
+            featuredImage.src = data.featured_image;
+            featuredImage.alt = data.title;
+
+            var thumbImages = data.images;
+            console.log(thumbImages);
+            thumbImages.forEach((image) =>{
+                    productImgThumb.innerHTML += `
+                        <img id='thumb-images' src='${image}' alt='${data.title}' class='img-thumbnail' />
+                    `;
+                    
+                })
+                
+            var clickImgs = productImgThumb.querySelectorAll('#thumb-images');
+            clickImgs.forEach((clickImg)=>{
+                clickImg.addEventListener('click', (e)=>{
+                    featuredImage.src = e.target.src;
+                    console.log(e.target.src);
+                })
+            })
+
+            productDetailsBox.classList.add('active');
+            overlay.classList.add('active');
+        });
+    })       
+})
+
+overlay.addEventListener('click', function(){
+    overlay.classList.remove('active');
+    productDetailsBox.classList.remove('active');
+})
+
+closeModal.addEventListener('click', function(){
+    overlay.classList.remove('active');
+    productDetailsBox.classList.remove('active');
+})
+
+
