@@ -83,3 +83,55 @@ if(localItems.length > 0){
         })
     })
 }
+
+
+// Predective search js code 
+var searchField = document.getElementById('searchInputField');
+var searchResult = document.querySelector('.predective-search-box');
+var timer;
+
+if(searchField != null){
+    
+    searchField.addEventListener('input', (event)=>{
+        
+        clearTimeout(timer);
+
+        if(event.target.value){
+            searchResult.classList.add('active');
+            timer = setTimeout(fetchPredectiveSearch(), 1000);
+        }else{
+            searchResult.classList.remove('active');
+        }
+
+    })
+}
+
+function fetchPredectiveSearch(){
+    fetch(`/search/suggest.json?q=${searchField.value}&resources[type]=product&resources[options][unavailable_products]=hide&resources[options][fields]=title,product_type,variants.title`)
+        .then(resp => resp.json())
+        .then(data => {
+
+            searchResult.innerHTML = '';
+            var products = data.resources.results.products;
+            if(products.length > 0){
+                products.forEach(function(product,index){
+                    searchResult.innerHTML += `
+                        <div class='single-search-item'>
+                            <a href='${ product.url }'>
+                                <img src='${product.featured_image.url}' class='img-responsive' />
+                                <span>${product.title}</span>
+                            </a>
+                        </div>
+                    `;
+                })
+            }else{
+                searchResult.innerHTML = `<div class='alert alert-warning w-100'>
+                    <h4>Not Product fuound!</h4>
+                </div>`;
+            }
+            
+            console.log(products);
+
+        });
+    
+}

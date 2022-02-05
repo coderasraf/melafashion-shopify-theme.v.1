@@ -1,4 +1,4 @@
-<!-- 
+
 <header>
     <div class="announcement-bar bg-warning py-2">
         <div class="container">
@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- Header top area -->
     <div class="header-top-area py-2">
         <div class="container">
@@ -24,12 +24,13 @@
                 <div class="search-bar-area">
                     <form action="/search" method="GET" role="search">
                         <div class="form-group">
-                            <input class="shadow" name="q" type="search" placeholder="Search Products and brands" value="{{ search.terms | escape }}">
+                            <input class="shadow" name="q" type="search" placeholder="Search Products and brands" value="{{ search.terms | escape }}" autocomplete="none" id="searchInputField">
                             <button class="btn btn-success rounded-0 search-button ml-button" type="submit">
                                 {% render 'search-icon' %}
                             </button>
                         </div>
                     </form>
+                    <div class="predective-search-box shadow"></div>
                 </div>
 
                 <div class="top-right-menu">

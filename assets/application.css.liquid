@@ -28,6 +28,10 @@
 .top-right-area-menu li a span {
   margin-right: 5px;
 }
+.search-bar-area {
+  position: relative;
+  z-index: 99999;
+}
 .search-bar-area .form-group {
   position: relative;
 }
@@ -40,9 +44,9 @@
 
 .search-bar-area .form-group input {
   width: 100%;
-  padding: 7px 8px;
+  padding: 6px 8px;
   width: 300px;
-  border: 1px solid #f9f9f9;
+  border: 2px solid #198754;
   color: #000;
 }
 .search-bar-area .form-group input::placeholder {
@@ -50,11 +54,59 @@
   opacity: 0.5;
 }
 
+.predective-search-box {
+  position: absolute;
+  background: #fff;
+  z-index: 99999;
+  max-height: 350px;
+  overflow-y: scroll;
+  width: 400px;
+  left: -45px;
+  top: 100%;
+  box-shadow: 0px 7px 20px #dddddd08;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease-in-out;
+}
+
+.predective-search-box::-webkit-scrollbar {
+  background: #fff;
+  width: 1em;
+  border-radius: 30px;
+}
+
+.predective-search-box::-webkit-scrollbar-thumb {
+  background: #ddd;
+  width: 10px;
+  border-radius: 30px;
+}
+
+.predective-search-box.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 999999;
+}
+
+.single-search-item img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+.single-search-item a {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
+  padding: 5px 10px;
+}
+.single-search-item:last-child a {
+  border-bottom: 0;
+}
+
 /* =====Welcome area css ====== */
 .hero-banner-area {
   padding: 40px 0;
   position: relative;
-  z-index: 1;
   padding: 100px 0;
   overflow: hidden;
   width: 100%;
