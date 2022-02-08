@@ -8,6 +8,10 @@
    <div class="container py">
     <div class="row">
         <div class="col-md-8 col-lg-6">
+           <div class="hero-main-wrapper">
+            <h4 class="meta-text-info">
+                Save up 30% off
+            </h4>
          <h1>
              {% if section.settings.section_title %}
                  {{ section.settings.section_title }}
@@ -19,10 +23,18 @@
              {% endif %}
          </p>
          {% if section.settings.button_url %}
-             <a class="btn rounded-0 btn-primary" href="{{ section.settings.button_url }}">
+             <a class="btn custom-button rounded-100 btn-lg btn-success" href="{{ section.settings.button_url }}">
                  {{ section.settings.button_text }}
              </a>
          {% endif %}
+           </div>
+        </div>
+        <div class="col-md-4 col-lg-6 col-12 foco-img">
+            {% if section.settings.hero_right_img %}
+            <img class="img-responsive" src="{{ section.settings.hero_right_img | img_url: 'master' }}" alt="">
+            {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+            {% endif %}
         </div>
     </div>
    </div>
@@ -37,6 +49,11 @@
             "type": "image_picker",
             "id":"banner_image",
             "label":"Insert Banner Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "hero_right_img",
+            "label": "Add banner right image"
         },
         {
             "type":"text",

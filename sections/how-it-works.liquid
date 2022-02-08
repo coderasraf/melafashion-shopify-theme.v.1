@@ -1,0 +1,60 @@
+<section class="section-padding how-it-work-section">
+    <div class="container">
+        <div class="how-it-wrapper">
+            {% for block in section.blocks %}
+                {% assign item = block.settings %}
+                <div class="single-how-work">
+                    <img src="{{ item.image | img_url:"compact" }}" alt="">
+                    <div class="how-title">
+                        <h5>{{ item.title }}</h5>
+                        <p>{{ item.sub_title }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "How it works",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Section Title"
+        }
+    ],
+    "blocks":[
+        {
+            "type": "how-it-work",
+            "name": "How it work",
+            "settings":[
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Icon"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "24 Customer Support"
+                },
+                {
+                    "type": "richtext",
+                    "id": "sub_title",
+                    "label": "Sub text",
+                    "default": "<p>Contact us 24 hours</p>"
+                }
+            ]
+        }
+    ],
+    "presets":[
+        {
+            "name": "How it works",
+            "category": "How it works"
+        }
+    ]
+}
+{% endschema %}

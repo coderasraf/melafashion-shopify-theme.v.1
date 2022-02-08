@@ -1,10 +1,11 @@
-<footer class="footer-section {{ section.class }} section-padding bg-light mt-4">
+{% assign footerBgColor = section.settings.footer_color %}
+<footer style="background-color:{{ footerBgColor }}" class="footer-section {{ section.class }} section-padding bg-light mt-4">
     <div class="container">
-        <div class="row row-cols-{{ section.settings.cols_num }}">
+        <div class="row">
             {% for block in section.blocks %}
              {% assign item = block.settings %}
                 {% if block.type == 'navigation' %}
-                <div class="col">
+                <div class="col-md-3">
                     <h3 class="mb-3">{{ item.title }}</h3>
                     {% assign menu_linklists = item.menu_links %}
                         <ul class="list-unstyled text-small">
@@ -16,20 +17,57 @@
                         </ul>
                 </div>
                 {% else if block.type == 'text' %}
-                <div class="col">
+                <div class="col-md-6 col-12">
+                    {% if item.footer_logo %}
+                        <div class="footer-bottom-logo">
+                            <img src="{{ item.footer_logo | img_url: 'medium' }}" alt="{{ item.footer_logo.alt }}">
+                        </div>
+                    {% else %}
+                    {{ 'image' | placeholder_svg_tag }}
+                    {% endif %}
+                    
                     <h3 class="mb-3">{{ item.details_title }}</h3>
                     <p class="lead">{{ item.details }}</p>
+                    {% if section.settings.show_download_icons %}
+                    <div class="download-links">
+                        {% if section.settings.appstore_link %}
+                           <a href="{{ section.settings.appstore_link }}">
+                            <img src="{{ 'appstore.png' | asset_img_url: '140x46' }}" alt="">
+                           </a>
+                        {% endif %}
+                        {% if section.settings.playstore_link %}
+                        <a href="{{ section.settings.playstore_link }}">
+                            <img src="{{ 'playstore.png' | asset_img_url: '140x46' }}" alt="">
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
                 </div>
                 {% endif %}
             {% endfor %}
         </div>
-        <div class="row text-center mt-3">
-            <div class="col text-center">
-                <div class="payment-icons d-flex justify-content-center">
-                    {% for payment_type in shop.enabled_payment_types %}
-                        <img src="{{ payment_type | payment_type_img_url }}" alt="">
-                    {% endfor %}
-                 </div>
+
+        <div class="footer-bottom">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="footer-social-links">
+                        {% include 'social-links' %}
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    {% if section.settings.copyright_text %}
+                        <div class="footer-copyright-text">
+                            {{ section.settings.copyright_text }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="payment-icons d-flex justify-content-center">
+                        {% for payment_type in shop.enabled_payment_types %}
+                            <img src="{{ payment_type | payment_type_img_url }}" alt="">
+                        {% endfor %}
+                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -41,12 +79,52 @@
     "class": "footer-menu",
     "settings":[
         {
-            "type": "range",
-            "id":"cols_num",
-            "default":3,
-            "min": 2,
-            "max": 4,
-            "label": "Number of columns"
+            "type": "checkbox",
+            "id": "show_download_icons",
+            "label": "Show playstore/appstore",
+            "default": true
+        },
+        {
+            "type": "url",
+            "id": "appstore_link",
+            "label": "Appstore download Link"
+        },
+        {
+            "type": "url",
+            "id": "playstore_link",
+            "label": "Playstore download Link"
+        },
+        {
+           "type": "color",
+           "id": "footer_color",
+           "default": "#F5F5F5",
+           "label": "Footer background Color"
+        },
+        {
+            "type": "url",
+            "id": "facebook",
+            "label": "Facebook"
+        },
+        {
+            "type": "url",
+            "id": "twitter",
+            "label": "Twitter"
+        },
+        {
+            "type": "url",
+            "id": "instagram",
+            "label": "Instagram"
+        },
+        {
+            "type": "url",
+            "id": "skype",
+            "label": "Skype"
+        },
+        {
+            "type": "richtext",
+            "id": "copyright_text",
+            "label": "Footer copyright text",
+            "default": "<p>@2022 Copyright All Right Reserved by Bengal Shop</p>"
         }
     ],
     "max_blocks": 4,
@@ -73,6 +151,11 @@
             "name": "Store Details",
             "settings": [
                 {
+                    "type": "image_picker",
+                    "id": "footer_logo",
+                    "label": "Footer logo"
+                },
+                {
                     "type": "text",
                     "id": "details_title",
                     "label": "Title",
@@ -85,6 +168,17 @@
                     "default": "<p>Enter your store details</p>"
                 }
             ]   
+        },
+        {
+            "name": "Social Links",
+            "type": "social_links",
+            "settings":[
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Social media link"
+                }
+            ]
         }
     ]
 }

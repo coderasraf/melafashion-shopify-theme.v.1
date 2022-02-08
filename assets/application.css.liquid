@@ -12,7 +12,10 @@
   align-items: center;
 }
 .header-top-area {
-  padding: 25px 0 !important;
+  padding: 15px 0 !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .top-right-area-menu {
   display: flex;
@@ -46,7 +49,7 @@
   width: 100%;
   padding: 6px 8px;
   width: 300px;
-  border: 2px solid #198754;
+  border: 2px solid var(--success);
   color: #000;
 }
 .search-bar-area .form-group input::placeholder {
@@ -102,14 +105,75 @@
 .single-search-item:last-child a {
   border-bottom: 0;
 }
+/* ===== Search by category ===== */
+.search-by-category-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 20px;
+}
+
+.single-category-box {
+  background: #f2f2f2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  transition: 0.3s ease-in-out;
+}
+.single-category-box:hover {
+  background: #ebfaeb;
+  border-radius: 5px;
+}
+.single-category-box img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.meta-cat-title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  color: #333333;
+}
+/* =====How it works css ====== */
+.how-it-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+.single-how-work {
+  display: flex;
+  align-items: center;
+}
+.single-how-work img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-right: 20px;
+}
+.how-title p {
+  font-size: 18px;
+  line-height: 30px;
+  color: #828282;
+  margin-top: 8px;
+}
 
 /* =====Welcome area css ====== */
 .hero-banner-area {
   padding: 40px 0;
   position: relative;
   padding: 100px 0;
+  padding-bottom: 0;
   overflow: hidden;
   width: 100%;
+}
+.hero-main-wrapper {
+  background: rgb(255 255 255 / 60%);
+  padding: 20px 25px;
 }
 .hero-banner-area h1 {
   margin-bottom: 20px;
@@ -119,6 +183,10 @@
   margin-bottom: 24px;
   font-size: 20px;
   font-weight: 300;
+}
+.meta-text-info {
+  color: var(--success);
+  margin-bottom: 15px;
 }
 .hero-banner-area img,
 .hero-banner-area svg {
@@ -134,12 +202,19 @@
 .hero-banner-area img {
   object-fit: cover;
 }
+.foco-img img {
+  position: inherit !important;
+  bottom: 0;
+}
 
+.py .row {
+  align-items: center;
+}
 /* Featured collection product css */
 .featured-collection-inner {
   display: grid;
   gap: 0.125rem;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .featured-1 .product-img-1 {
@@ -197,7 +272,7 @@
   font-size: 14px;
   border: none;
   padding: 3px 21px;
-  background-color: tomato !important;
+  background-color: var(--success) !important;
   color: #fff;
 }
 
@@ -477,7 +552,7 @@
   background: #fff;
   padding: 20px;
   border-radius: 5px;
-  height: 500px;
+  height: 550px;
   overflow-y: scroll;
   width: 90vw;
   z-index: 9999999;
@@ -525,15 +600,66 @@
 .product-img-thumb img {
   width: 100px;
   height: 100px;
-  margin: 0 4px;
+  margin: 0 6px;
   cursor: pointer;
   object-fit: cover;
 }
 
 .featured-modal-image img {
   width: 100%;
-  height: 100%;
+  height: 400px;
+  object-fit: contain;
   text-align: center;
+}
+
+/* =======Footer css ======== */
+.download-links {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.footer-section p {
+  font-size: 16px;
+  color: #4f4f4f;
+  line-height: 28px;
+}
+.footer-section h3 {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.footer-section ul li a {
+  font-size: 18px;
+  line-height: 35px;
+  color: #828282;
+}
+.footer-bottom-logo {
+  margin-bottom: 35px;
+}
+.footer-bottom-logo {
+  margin-bottom: 35px;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+}
+
+.social-links li a {
+  margin-right: 15px;
+}
+
+.footer-copyright-text p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #828282;
+}
+
+.footer-bottom {
+  padding-top: 50px;
 }
 
 @media (min-width: 992px) {
@@ -551,5 +677,25 @@
 @media (min-width: 40em) {
   .mela-custom-card img {
     aspect-ratio: 1 / 1.2;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-section ul {
+    margin-bottom: 30px;
+  }
+
+  .download-links {
+    margin-bottom: 31px;
+  }
+  .social-links {
+    margin-bottom: 0 !important;
+    justify-content: center;
+  }
+  .footer-copyright-text {
+    margin: 10px 0;
+  }
+  .footer-copyright-text p {
+    font-size: 13px;
   }
 }

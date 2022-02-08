@@ -8,6 +8,16 @@
     "theme_support_url": "https://github.com/coderasraf/"
   },
   {
+    "name": "Body Style",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "background_img",
+        "label": "Choose Body background image"
+      }
+    ]
+  },
+  {
     "name": "Typhography",
     "settings":[
       {

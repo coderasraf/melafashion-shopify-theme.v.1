@@ -1,0 +1,18 @@
+<ul class="social-links">
+    {% if section.settings.facebook %}
+       <li><a href="{{ section.settings.facebook }}">
+          {% include 'facebook' %}
+       </a></li> 
+    {% endif %}
+    {% if section.settings.twitter %}
+       <li><a href="{{ section.settings.twitter }}">
+           {% include 'twitter' %}
+       </a></li> 
+    {% endif %}
+    {% if section.settings.skype %}
+       <li><a href="{{ section.settings.skype }}">{% include 'skype' %} </a></li> 
+    {% endif %}
+    {% if section.settings.instagram %}
+       <li><a href="{{ section.settings.instagram }}"> {% include 'instagram' %} </a></li> 
+    {% endif %}
+</ul>

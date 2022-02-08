@@ -1,0 +1,61 @@
+<section class="search-by-category padding-bottom-0 section-padding {{ section.class }}">
+    <div class="container">
+            <div class="category-title">
+                <h2>{{ section.settings.title }}</h2>
+            </div>
+        <div class="search-by-category-inner">
+            {% for block in section.blocks %}
+                {% assign item = block.settings %}
+                <a href="{{ item.category_url }}" class="single-category-box">
+                    <img src="{{ item.category_img | img_url:"compact" }}" alt="{{ item.category_img.alt }}">
+                    <h4 class="meta-cat-title">{{ item.collection_title }}</h4>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Search By Category",
+    "class": "search-by-cateogory-section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label":"Section Title",
+            "default": "Search By Category"
+        }
+    ],
+    "blocks":[
+        {
+            "type": "search-category",
+            "name": "Search Category item",
+            "settings": [
+                {
+                    "type":"image_picker",
+                    "id": "category_img",
+                    "label": "Category image"
+                },
+                {
+                    "type": "text",
+                    "id": "collection_title",
+                    "label": "Your category title",
+                    "default": "Default title"
+                },
+                {
+                    "type": "url",
+                    "id": "category_url",
+                    "label": "Your collection URL"
+                }
+            ]
+        }
+    ],
+    "presets":[
+        {
+            "name": "Search By Category",
+            "category": "Category"
+        }
+    ]
+}
+{% endschema %}

@@ -1,6 +1,6 @@
 
 <header>
-    <div class="announcement-bar bg-warning py-2">
+    <div class="announcement-bar bg-success text-light py-2">
         <div class="container">
             <div class="row">
                 <div class="col text-center">
@@ -10,7 +10,9 @@
         </div>
     </div>
     <!-- Header top area -->
-    <div class="header-top-area py-2">
+    <div {% if section.settings.header_image %}
+    style="background-image: url({{ section.settings.header_image | img_url:'master' }});"
+    {% endif %} class="header-top-area py-2">
         <div class="container">
             <div class="header-top-inner">
 
@@ -101,8 +103,13 @@
 
   {% schema %}
   {
-     "name": "Header Menu Left",
+     "name": "Header",
      "settings":[
+        {
+            "type": "image_picker",
+            "id": "header_image",
+            "label": "Header background image"
+        },
         {
             "type": "link_list",
             "id":"main-menu-left",

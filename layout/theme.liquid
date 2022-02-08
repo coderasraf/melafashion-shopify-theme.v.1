@@ -21,9 +21,11 @@
   {{ 'application.css' | asset_url | stylesheet_tag }}
   {{ 'base.css' | asset_url | stylesheet_tag }}
 </head>
-<body>
+<body {% if settings.background_img %}
+  style="background-image: url({{ settings.background_img | img_url:'master' }});"
+{% endif %}>
   
-  {% section 'translation' %}
+  <!-- {% include 'translation' %} -->
   {% section 'header' %}
 
   <main role="main">
@@ -31,7 +33,7 @@
   </main>
 
   {% section 'footer' %}
-  {% section 'product-details-modal' %}
+  {% include 'product-details-modal' %}
   <div class="overlay"></div>
 
   {{ 'jquery.min.js' | asset_url | script_tag }}

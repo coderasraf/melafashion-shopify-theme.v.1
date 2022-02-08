@@ -1,3 +1,7 @@
+:root {
+  --success: #27ae60;
+}
+
 *,
 ::before,
 ::after {
@@ -27,9 +31,26 @@ h5,
 h6 {
   font-family: var(--font_heading_family);
 }
+h4 {
+  font-size: 32px;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-weight: bold;
+}
+h5 {
+  font-size: 25px;
+}
+@media (min-width: 1366px) {
+  h1 {
+    font-size: 4.321rem;
+  }
+}
 .mela-btn {
   border: 0;
-  background: #198754;
+  background: var(--success);
   color: #fff;
   padding: 5px 12px;
   margin: 0 5px;
@@ -37,6 +58,10 @@ h6 {
   cursor: pointer;
   transition: 0.3s ease-in-out;
   font-size: 14px;
+}
+.custom-button {
+  border-radius: 50px;
+  padding: 10px 30px;
 }
 .product-card-bottom h3 a {
   font-family: var(--font_heading_family);
@@ -92,6 +117,31 @@ button {
 .section-padding {
   padding: 70px 0;
 }
+.padding-bottom-0 {
+  padding-bottom: 0;
+}
+.category-title {
+  margin-bottom: 30px;
+  position: relative;
+  padding: 30px 0;
+}
+
+.category-title:after,
+.category-title:before {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  content: "";
+}
+.category-title:after {
+  width: 100%;
+  background: #ebfaeb;
+  z-index: -1;
+}
+.category-title:before {
+  width: 10%;
+  background: var(--success);
+}
 .page-main-wrapper {
   padding: 40px 30px;
 }
@@ -131,4 +181,9 @@ button {
 .overlay.active {
   opacity: 0.7;
   visibility: visible;
+}
+
+/* bootstrap class overwrite */
+.btn.btn-success {
+  background-color: var(--success);
 }
