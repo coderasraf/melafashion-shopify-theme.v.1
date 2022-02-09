@@ -21,7 +21,7 @@
     {% endif %}
     <div class="bottom-info-add">
       {%- assign current_variant = product.selected_or_first_available_variant -%}
-      <button product-handle="{{ product.handle }}" product-price="{{ product.price | money_without_trailing_zeros }}" compare-at-price="{{ product.compare_at_price | money_without_trailing_zeros }}" product-sku="{{ current_variant.sku }}" id="showProduct" class="mela-btn" type="button">👁</button>
+      <button product-stock="{{ product.variants.first.inventory_quantity }}" product-handle="{{ product.handle }}" product-price="{{ product.price | money_without_trailing_zeros }}" compare-at-price="{{ product.compare_at_price | money_without_trailing_zeros }}" product-sku="{{ current_variant.sku }}" id="showProduct" class="mela-btn" type="button">👁</button>
       <button id="addToCart" class="mela-btn" type="button">Add To Cart</button>
     </div>
   </div>

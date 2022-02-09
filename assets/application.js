@@ -164,10 +164,16 @@ const closeModal = document.querySelector('.modal-close');
             var category = document.getElementById('productCategory');
             var compareAtValue = document.getElementById('onSalePrice');
             var tagsBox = document.getElementById('productTags');
+            var stockBox = document.getElementById('leftProductCount');
+            var stock = e.target.getAttribute('product-stock');
             var productPrice = e.target.getAttribute('product-price');
             var sku = e.target.getAttribute('product-sku');
             var skuNumber = document.getElementById('skuNumber');
 
+            // Showing available stock for product
+            leftProductCount.innerText = stock;
+
+            // Adding sku from the product-sku attribute
             if(sku != null){
                 skuNumber.innerText = sku;
             }
@@ -175,6 +181,7 @@ const closeModal = document.querySelector('.modal-close');
                 skuNumber.innerText = "N/A";
             }
             
+            // Showing product all details field
             compareAtValue.innerText = comparePrice;
             productImgThumb.innerHTML = '';
             featuredImage.src = data.featured_image;
@@ -182,12 +189,14 @@ const closeModal = document.querySelector('.modal-close');
             price.innerText = productPrice;
             title.innerText = data.title;
             
+        // Showing product category
             if(data.type != null){
                 category.innerText = data.type;
             }else{
                 category.innerText = "N/A";
             }
 
+        // Shwoing product tags
             if(data.tags != null){
                 tagsBox.innerText = '';
                 let tags = data.tags;
@@ -196,11 +205,9 @@ const closeModal = document.querySelector('.modal-close');
                         <span class='tag'>${tag }</span>,
                     `;
                 })
-
-                var tagIco = document.querySelectorAll('.tag');
-                console.log(tagIco);
             }
 
+            // Selecting product all images
             var thumbImages = data.images;
             console.log(data);
             thumbImages.forEach((image) =>{
@@ -209,7 +216,8 @@ const closeModal = document.querySelector('.modal-close');
                     `;
                     
                 })
-                
+            
+        // modal image slider when click on a image immedietly change big image src from her src attribute.
             var clickImgs = productImgThumb.querySelectorAll('#thumb-images');
             clickImgs.forEach((clickImg)=>{
                 clickImg.addEventListener('click', (e)=>{

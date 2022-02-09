@@ -77,7 +77,20 @@
                 <label for="Quantity">Quantity</label>
                 <input required type="number" min="1" max="4" class="form-control" name="quantity" id="Quantity" value="1">
               </div>
-
+              {% if product.available %}
+                  {% if product.variants.first.inventory_quantity <= 4 %}
+                      Low stock - ready to ship
+                  {% else %}
+                      Ready to ship
+                  {% endif %}
+              {% else %}
+                  {% case product.variants.first.inventory_quantity %}
+                      {% when 0 %}Sold Out!
+                      {% when -1 %}Backordered
+                      {% when -2 %}Discontinued
+                      ... ETC ...
+                  {% endcase %}
+              {% endif %}
               <button type="submit" value="Add To Cart" id="addToCart" class="btn mb-2 btn-secondary btn-lg w-100 rounded-0">Add To cart</button>
 
              {% if section.settings.enable_dynamic_checkout %}

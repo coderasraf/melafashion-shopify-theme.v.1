@@ -2,7 +2,7 @@
     <span class="modal-close">&times;</span>
     <div class="row">
         <div class="col-12 col-md-6">
-            <div class="product-images-wrapper-modal border">
+            <div class="product-images-wrapper-modal">
                 <div class="featured-modal-image">
                     <img id="featuredImage" src="" alt="">
                 </div>
@@ -29,12 +29,25 @@
                <div class="upsell-product-sell">
                 20 Products sold in last 12 hours
                </div>
-
-               <div class="add-cart-buy-now-btn">
-                   <button type="submit" id="addToCartModal" class="btn btn-success">Add To Cart</button>
-
-                   <button id="buyNowBtn" class="btn btn-default">Buy Now</button>
-               </div>
+               <hr style="border: 1px solid #E0E0E0;">
+              <form action="#" id="addToCartModalForm">
+                  <div class="product-quantity-select">
+                      <span>Quantity </span>
+                      <div class="product-qty-main">
+                          <button type="button" class="qty minus" id="minus">-</button>
+                          <button type="button" class="qty main-qty" id="qtyCount">1</button>
+                          <button type="button" class="qty plus" id="plus">+</button>
+                      </div>
+                      <span class="left-product">Only !<span id="leftProductCount"> </span> Item Left!</span>
+                  </div>
+                    <input type="hidden" name="id" class="prdouctSelct">
+                    <input type="hidden" name="quantity" id="quantity">
+                    <div class="add-cart-buy-now-btn">
+                        <button type="submit" id="addToCartModal" class="btn btn-success">Add To Cart</button>
+                    </div>
+                    {{ form | payment_button }}
+               
+                </form>
 
                <div class="product-meta-info-modal">
                    <div class="single-meta-info-box">
@@ -56,8 +69,6 @@
                     </span>
                     <span class="product-tags" id="productTags">Food, Fruits, Vegetables</span>
                 </div>
-
-
                </div>
             </div>
         </div>
