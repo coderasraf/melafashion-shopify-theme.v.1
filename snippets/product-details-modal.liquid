@@ -12,7 +12,53 @@
         </div>
         <div class="col-12 col-md-6">
             <div class="right-modal-details-content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt animi sequi totam magnam fuga ducimus eveniet voluptatibus soluta. Voluptatem quos nihil repudiandae earum rerum quam doloremque mollitia dignissimos possimus tenetur.
+               <div class="availability-stock">
+                   <span>Status </span> <span id="availability">In stock</span>
+               </div>
+               <h3 class="product-title" id="productTitle">Product full name here</h3>
+               <div class="product-reviews">
+                   <img src="{{ 'star.png' | asset_img_url:'master' }}" alt="">
+                   <span class="reviews-count">12 reviews</span>
+               </div>
+               <div class="product-price">
+                   <span class="product-price-span" id="productPrice">$50</span>
+                   <span class="product-price-span" id="onSalePrice">$60</span>
+                   <span class="vat" id="vatInclude">(+15% Vat Included)</span>
+               </div>
+
+               <div class="upsell-product-sell">
+                20 Products sold in last 12 hours
+               </div>
+
+               <div class="add-cart-buy-now-btn">
+                   <button type="submit" id="addToCartModal" class="btn btn-success">Add To Cart</button>
+
+                   <button id="buyNowBtn" class="btn btn-default">Buy Now</button>
+               </div>
+
+               <div class="product-meta-info-modal">
+                   <div class="single-meta-info-box">
+                       <span class="product-meta-title">
+                           sku
+                       </span>
+                       <span class="sku-count" id="skuNumber">3435345</span>
+                   </div>
+                   <div class="single-meta-info-box">
+                       <span class="product-meta-title">
+                        category
+                       </span>
+                       <span class="product-category" id="productCategory">Food</span>
+                   </div>
+
+                   <div class="single-meta-info-box">
+                    <span class="product-meta-title">
+                     Tags
+                    </span>
+                    <span class="product-tags" id="productTags">Food, Fruits, Vegetables</span>
+                </div>
+
+
+               </div>
             </div>
         </div>
     </div>

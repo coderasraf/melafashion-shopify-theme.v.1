@@ -138,10 +138,9 @@ function fetchPredectiveSearch(){
     
 }
 
+
+
 // product details modal
-
-
-
 const productModalBtns = document.querySelectorAll('#showProduct');
 const productDetailsBox= document.querySelector(".product-modal-details");
 const closeModal = document.querySelector('.modal-close');
@@ -156,14 +155,54 @@ const closeModal = document.querySelector('.modal-close');
         fetch(url)
         .then(respn => respn.json())
         .then(data => {
+
             var  featuredImage = document.querySelector('#featuredImage');
             var productImgThumb = document.querySelector('.product-img-thumb');
+            var price = document.getElementById('productPrice');
+            var title = document.getElementById('productTitle');
+            var comparePrice = e.target.getAttribute('compare-at-price');
+            var category = document.getElementById('productCategory');
+            var compareAtValue = document.getElementById('onSalePrice');
+            var tagsBox = document.getElementById('productTags');
+            var productPrice = e.target.getAttribute('product-price');
+            var sku = e.target.getAttribute('product-sku');
+            var skuNumber = document.getElementById('skuNumber');
+
+            if(sku != null){
+                skuNumber.innerText = sku;
+            }
+            if(sku == ''){
+                skuNumber.innerText = "N/A";
+            }
+            
+            compareAtValue.innerText = comparePrice;
             productImgThumb.innerHTML = '';
             featuredImage.src = data.featured_image;
             featuredImage.alt = data.title;
+            price.innerText = productPrice;
+            title.innerText = data.title;
+            
+            if(data.type != null){
+                category.innerText = data.type;
+            }else{
+                category.innerText = "N/A";
+            }
+
+            if(data.tags != null){
+                tagsBox.innerText = '';
+                let tags = data.tags;
+                tags.forEach((tag) =>{
+                    tagsBox.innerHTML += `
+                        <span class='tag'>${tag }</span>,
+                    `;
+                })
+
+                var tagIco = document.querySelectorAll('.tag');
+                console.log(tagIco);
+            }
 
             var thumbImages = data.images;
-            console.log(thumbImages);
+            console.log(data);
             thumbImages.forEach((image) =>{
                     productImgThumb.innerHTML += `
                         <img id='thumb-images' src='${image}' alt='${data.title}' class='img-thumbnail' />

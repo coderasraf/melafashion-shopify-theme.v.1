@@ -554,7 +554,7 @@
   border-radius: 5px;
   height: 550px;
   overflow-y: scroll;
-  width: 90vw;
+  width: 75vw;
   z-index: 9999999;
   opacity: 0;
   visibility: hidden;
@@ -610,6 +610,140 @@
   height: 400px;
   object-fit: contain;
   text-align: center;
+}
+
+.availability-stock span {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #bdbdbd;
+  text-transform: uppercase;
+}
+
+#availability {
+  color: var(--success);
+  margin-left: 40px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+#productTitle {
+  font-style: normal;
+  font-size: 28px;
+  line-height: 40px;
+  color: #333333;
+  margin: 14px 0;
+  font-weight: bold;
+}
+
+.product-reviews {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.reviews-count {
+  margin-left: 10px;
+}
+
+.reviews-count {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.product-price span {
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 46px;
+  color: #333333;
+}
+
+.product-price {
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+}
+
+#onSalePrice {
+  color: #828282;
+  font-weight: 600;
+  margin-left: 15px;
+  position: relative;
+  z-index: -1;
+}
+#onSalePrice::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: #828282;
+  z-index: 1;
+  content: "";
+  top: 50%;
+  left: 0;
+}
+
+#vatInclude {
+  font-size: 16px;
+  line-height: 26px;
+  color: #828282;
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+.upsell-product-sell {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #4f4f4f;
+  margin-bottom: 20px;
+}
+
+#addToCartModal {
+  width: 100%;
+  padding: 15px 30px;
+  border-radius: 100px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+#buyNowBtn {
+  width: 100%;
+  background: #f2f2f2;
+  padding: 15px 30px;
+  border-radius: 100px;
+  margin-bottom: 30px;
+}
+
+.single-meta-info-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.product-meta-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  color: #bdbdbd;
+}
+
+.single-meta-info-box span:nth-child(2) {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  color: #4f4f4f;
 }
 
 /* =======Footer css ======== */
