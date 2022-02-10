@@ -169,9 +169,54 @@ const closeModal = document.querySelector('.modal-close');
             var productPrice = e.target.getAttribute('product-price');
             var sku = e.target.getAttribute('product-sku');
             var skuNumber = document.getElementById('skuNumber');
+            var vat = e.target.getAttribute('vat');
+            var vatInclude = document.getElementById("mainVat").innerText = `( ${vat}`;
 
             // Showing available stock for product
-            leftProductCount.innerText = stock;
+            stockBox.innerText = stock;
+
+            // Product variants slector js code
+            var productSelectModal = document.getElementById('productSelectModal');
+            var variants = data.variants;
+            productSelectModal.innerHTML = '';
+            variants.forEach((variant)=>{
+                productSelectModal.innerHTML += `
+                    <option value='${variant.id}'>${ variant.title }</option>
+                `;
+            })
+
+            // Product Quantity selector js code
+            var plusQty = document.getElementById('plus');
+            var minusQty= document.getElementById('minus');
+            var qtyCount= document.getElementById('qtyCount');
+            var qtyMainValue = document.getElementById('quantity');
+
+            var g = 0;
+            plusQty.addEventListener('click', increaseQuantity);
+            minusQty.addEventListener('click', decreaseQuantiy);
+
+            function increaseQuantity(){
+                g++;
+                var underStock = stock -1;
+                qtyMainValue.value = g;
+                qtyCount.innerText = g;
+                if(g > underStock){
+                    alert('We have only '+ stock +' stock');
+                    return g=0;
+                }
+            }
+            function decreaseQuantiy(){
+                g--;
+                qtyMainValue.value = g;
+                qtyCount.innerText = g;
+                if(g < 1) g=1;
+                return;
+            }
+
+            // Add to cart modal js functionality
+            const modalItemId = document.getElementById('modalItemID');
+            modalItemId.value = data.variants[0].id;
+
 
             // Adding sku from the product-sku attribute
             if(sku != null){
@@ -243,3 +288,38 @@ closeModal.addEventListener('click', function(){
 })
 
 
+// Add to cart js functionality
+const modalAddCartForm = document.getElementById('addToCartModalForm');
+modalAddCartForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    
+    var modalFormID = document.getElementById('modalItemID').value;
+    var modalQuantity = document.getElementById('quantity').value;
+
+    let formData = {
+       'items':[{
+               'id': modalFormID,
+               'quantity': modalQuantity,
+                properties: {
+                    'First name': 'Caroline'
+                }
+            }]
+        };
+    fetch('/cart/add.js',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(formData)
+    })
+    .then((resp) => {
+        resp.json();
+        console.log(resp);
+        if(resp.status == '200'){
+            alert('Product Added in the cart');
+        }else{
+            alert('Our stock has been over');
+        }
+    })
+    .catch((error)=> console.log('Error', error))
+})

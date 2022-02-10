@@ -20,9 +20,22 @@
     {% endif %}
     {% endif %}
     <div class="bottom-info-add">
+
       {%- assign current_variant = product.selected_or_first_available_variant -%}
-      <button product-stock="{{ product.variants.first.inventory_quantity }}" product-handle="{{ product.handle }}" product-price="{{ product.price | money_without_trailing_zeros }}" compare-at-price="{{ product.compare_at_price | money_without_trailing_zeros }}" product-sku="{{ current_variant.sku }}" id="showProduct" class="mela-btn" type="button">👁</button>
+
+      {% if product.compare_at_price_max > product.price %}
+        {% assign youSave = "You save {{ product.compare_at_price_max | minus: product.price | times: 100.0 |divided_by: product.compare_at_price_max | money_without_currency | times: 100 | remove: '.0'}}% ({{ product.compare_at_price_max | minus: product.price|money}})" %}
+      {% endif %}
+
+      {% assign vat = product.price | times:1.15 | money_without_trailing_zeros %}
+      {% assign stock =  product.variants.first.inventory_quantity  %}
+      {% assign price = product.price | money_without_trailing_zeros %}
+      {% assign comparePrice = product.compare_at_price | money_without_trailing_zeros %}
+
+      <button save="{{ youSave }}" vat="{{ vat }}" product-stock="{{ stock }}" product-handle="{{ product.handle }}" product-price="{{ price }}" compare-at-price="{{ comparePrice }}" product-sku="{{ current_variant.sku }}" id="showProduct" class="mela-btn" type="button">👁</button>
+
       <button id="addToCart" class="mela-btn" type="button">Add To Cart</button>
+
     </div>
   </div>
   <div class="product-bottom-details">

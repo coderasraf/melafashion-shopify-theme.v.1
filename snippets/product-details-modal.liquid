@@ -23,7 +23,7 @@
                <div class="product-price">
                    <span class="product-price-span" id="productPrice">$50</span>
                    <span class="product-price-span" id="onSalePrice">$60</span>
-                   <span class="vat" id="vatInclude">(+15% Vat Included)</span>
+                   <span class="vat" id="vatInclude"><span id="mainVat"></span> with 15% Vat)</span>
                </div>
 
                <div class="upsell-product-sell">
@@ -31,6 +31,11 @@
                </div>
                <hr style="border: 1px solid #E0E0E0;">
               <form action="#" id="addToCartModalForm">
+                
+                <div class="form-group mb-2">
+                    <select class="form-control" name="id" id="productSelectModal"></select>
+                  </div> 
+                
                   <div class="product-quantity-select">
                       <span>Quantity </span>
                       <div class="product-qty-main">
@@ -40,8 +45,8 @@
                       </div>
                       <span class="left-product">Only !<span id="leftProductCount"> </span> Item Left!</span>
                   </div>
-                    <input type="hidden" name="id" class="prdouctSelct">
-                    <input type="hidden" name="quantity" id="quantity">
+                    <input type="hidden" name="id" class="prdouctSelct" id="modalItemID">
+                    <input value="1" min="1" type="hidden" name="quantity" id="quantity">
                     <div class="add-cart-buy-now-btn">
                         <button type="submit" id="addToCartModal" class="btn btn-success">Add To Cart</button>
                     </div>
@@ -64,12 +69,14 @@
                    </div>
 
                    <div class="single-meta-info-box">
-                    <span class="product-meta-title">
-                     Tags
-                    </span>
-                    <span class="product-tags" id="productTags">Food, Fruits, Vegetables</span>
-                </div>
+                        <span class="product-meta-title">
+                        Tags
+                        </span>
+                        <span class="product-tags" id="productTags">Food, Fruits, Vegetables</span>
+                    </div>
                </div>
+
+               
             </div>
         </div>
     </div>
